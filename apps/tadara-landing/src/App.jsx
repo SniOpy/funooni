@@ -1,11 +1,9 @@
+import Hero from './sections/hero/Hero'
+import './styles/design-system.css'
+
+
 function App() {
-
-
-  return (
-    <>
- <h1>Funooni Front APP </h1>
-    </>
-  )
+  return <Hero />
 }
 
 export default App
