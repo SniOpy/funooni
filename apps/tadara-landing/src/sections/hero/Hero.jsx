@@ -5,12 +5,65 @@ function Hero() {
     <HeroSection>
       <HeroInner>
         <HeroContent>
-          {/* Ton contenu texte viendra ici */}
+          <HeroBrand>
+            <a href="/" aria-label="Tadara — accueil">
+              <HeroLogo
+                src="/images/hero/tadara.png"
+                alt="TADARA"
+                width={220}
+                height={80}
+                decoding="async"
+              />
+            </a>
+          </HeroBrand>
+          <div className="hero-title">
+            <h1>Votre enfant utilise chaque jour un héritage de <span className="hero-title-highlight">1200 ans</span></h1>
+            <h2>Sans le savoir.</h2>
+          </div>
+          <div className="short-subtitle">
+            <p>Le savon qu'il utilise, les chiffres qu'il écrit à l'école, le mot "algorithme"... La civilisation arabo-musulmane a façonné son quotidien. <br/>Tadara est la lettre mensuelle qui révèle cette histoire fascinante dès 8 ans. </p>
+          </div>
+          <div className="emergency-offer">
+            <h3 className="emergency-offer__title">Rejoignez les 100 Familles Fondatrices avant le lancement de septembre.</h3> 
+            <p className="emergency-offer__description">Inscrivez-vous gratuitement sur la liste d'attente pour bloquer votre tarif pionnier de 10€/mois garanti à vie (au lieu du futur tarif public) et obtenir votre accès prioritaire.</p>
+
+            <form className="emergency-offer__form">
+              <input type="email" placeholder="Entrez votre adresse email" name='email' required/>
+              <button type="submit">réserver mon accès prioritaire (gratuit)</button>
+            </form>
+          </div>
+
+          <div className="hero-benefits">
+            
+            <div className="hero-benefits__item">
+              <img src="/images/hero/icons/cadeau.svg" alt="" />
+              <h4 className="hero-benefits__item-title">Zéro écran</h4>
+              <p className="hero-benefits__item-description">Une expérience 100% physique et tactile (papier, cire, vrais objets) qu'aucun algorithme ne peut remplacer.</p>
+            </div>
+            
+            <div className="hero-benefits__item">
+              <img src="" alt="" />
+              <h4 className="hero-benefits__item-title">Livré chez vous</h4>
+              <p className="hero-benefits__item-description">Chaque mois, une enveloppe vintage personnalisée directement dans sa boîte aux lettres.</p>
+            </div>
+            
+            <div className="hero-benefits__item">
+              <img src="" alt="" />
+              <h4 className="hero-benefits__item-title">Fier de ses racines</h4>
+              <p className="hero-benefits__item-description">Un contenu valorisant pour nourrir son identité, comprendre son histoire et grandir fier de qui il est.</p>
+            </div>
+            
+            <div className="hero-benefits__item">
+              <img src="" alt="" />
+              <h4 className="hero-benefits__item-title">Ludique et captivant</h4>
+              <p className="hero-benefits__item-description">Un format court et vivant (loin des manuels scolaires barbants) pour donner le goût de lire sans pression.</p>
+            </div>
+          </div>
         </HeroContent>
 
         <HeroVisual>
           <HeroImage
-            src="/images/hero-tadara.jpg"
+            src="/images/hero/hero-tadara.jpg"
             alt="Enfant découvrant une enveloppe éducative sur un bureau avec livres et objets du quotidien"
           />
           <HeroImageFade />
@@ -54,6 +107,23 @@ const HeroContent = styled.div`
     order: 2;
     padding: 24px;
   }
+`
+
+const HeroBrand = styled.div`
+  margin-bottom: clamp(1.25rem, 3.2vw, 2rem);
+  flex-shrink: 0;
+
+  a {
+    display: inline-block;
+    line-height: 0;
+    text-decoration: none;
+  }
+`
+
+const HeroLogo = styled.img`
+  display: block;
+  width: clamp(128px, 26vw, 220px);
+  height: auto;
 `
 
 const HeroVisual = styled.div`
