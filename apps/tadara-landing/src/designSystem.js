@@ -33,8 +33,8 @@ const designSystem = {
 
     typography: {
       fontFamily: {
-        // Pour les grands titres (ex: "Dans les coulisses de TADARA")
-        heading: "'Cormorant Garamond', 'Playfair Display', serif",
+        // Titres hero / éditoriaux — Playfair en premier : graisses très visibles (souvent proche maquettes type Figma)
+        heading: "'Playfair Display', Georgia, serif",
         // Pour le corps de texte et les boutons (lisibilité maximale)
         body: "'Plus Jakarta Sans', 'Inter', sans-serif",
         // Pour les petites touches "fait main" (ex: "123", "Al Khwarizmi")
@@ -57,6 +57,8 @@ const designSystem = {
         medium: '500',
         semibold: '600',
         bold: '700',
+        extrabold: '800',
+        black: '900',
       },
       letterSpacing: {
         tighter: '-0.05em',
@@ -88,5 +90,7 @@ const designSystem = {
     },
   },
 }
+
+export const theme = designSystem.theme
 
 export default designSystem
