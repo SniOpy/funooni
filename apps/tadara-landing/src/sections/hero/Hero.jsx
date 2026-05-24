@@ -1,184 +1,237 @@
+import './hero.css'
 import styled from 'styled-components'
+import { theme } from '../../designSystem'
+
+const HERO_BENEFITS = [
+  {
+    icon: '/images/hero/icons/cadeau.svg',
+    title: 'Zéro écran',
+    description:
+      'Une expérience 100% physique et tactile (papier, cire, vrais objets) qu’aucun algorithme ne peut remplacer.',
+  },
+  {
+    icon: '/images/hero/icons/enveloppe.svg',
+    title: 'Livré chez lui',
+    description:
+      'Chaque mois, une enveloppe vintage personnalisée directement dans sa boîte aux lettres.',
+  },
+  {
+    icon: '/images/hero/icons/medaille.svg',
+    title: 'Fier de ses racines',
+    description:
+      'Un contenu valorisant pour nourrir son identité, comprendre son histoire et grandir fier de qui il est.',
+  },
+  {
+    icon: '/images/hero/icons/ludique.svg',
+    title: 'Ludique & Captivant',
+    description:
+      'Un format court et vivant (loin des manuels scolaires barbants) pour donner le goût de lire sans pression.',
+  },
+]
 
 function Hero() {
   return (
-    <HeroSection>
-      <HeroInner>
-        <HeroContent>
-          <HeroBrand>
-            <a href="/" aria-label="Tadara — accueil">
-              <HeroLogo
+    <HeroStyled className="hero">
+      <div className="hero__inner">
+        <div className="hero__content">
+          <HeroHeaderStyled>
+            <a href="/" className="hero__logo-link" aria-label="Tadara — accueil">
+              <img
+                className="hero__logo"
                 src="/images/hero/tadara.png"
                 alt="TADARA"
-                width={220}
-                height={80}
+                width={180}
+                height={70}
                 decoding="async"
               />
             </a>
-          </HeroBrand>
-          <div className="hero-title">
-            <h1>Votre enfant utilise chaque jour un héritage de <span className="hero-title-highlight">1200 ans</span></h1>
-            <h2>Sans le savoir.</h2>
-          </div>
-          <div className="short-subtitle">
-            <p>Le savon qu'il utilise, les chiffres qu'il écrit à l'école, le mot "algorithme"... La civilisation arabo-musulmane a façonné son quotidien. <br/>Tadara est la lettre mensuelle qui révèle cette histoire fascinante dès 8 ans. </p>
-          </div>
-          <div className="emergency-offer">
-            <h3 className="emergency-offer__title">Rejoignez les 100 Familles Fondatrices avant le lancement de septembre.</h3> 
-            <p className="emergency-offer__description">Inscrivez-vous gratuitement sur la liste d'attente pour bloquer votre tarif pionnier de 10€/mois garanti à vie (au lieu du futur tarif public) et obtenir votre accès prioritaire.</p>
+          </HeroHeaderStyled>
 
-            <form className="emergency-offer__form">
-              <input type="email" placeholder="Entrez votre adresse email" name='email' required/>
-              <button type="submit">réserver mon accès prioritaire (gratuit)</button>
+          <HeroTitleStyled>
+            <h1>
+              Votre enfant utilise
+              <br /> chaque jour un héritage <br />
+              de{' '}
+              <span className="hero-title__highlight">1200&nbsp;ans.</span>
+            </h1>
+
+            <div className="hero-subline-stack">
+              <img
+                src="/images/hero/icons/paint.png"
+                alt=""
+                className="paint-background"
+                aria-hidden="true"
+                decoding="async"
+              />
+              <h2 className="hero-subline">Sans le savoir</h2>
+            </div>
+          </HeroTitleStyled>
+
+          <div className="hero-intro">
+            <p className="hero-intro__lead">
+              Le savon qu&apos;il utilise, les chiffres qu&apos;il écrit à l&apos;école, le mot
+              &quot;algorithme&quot;... La civilisation arabo-musulmane a façonné son quotidien.
+            </p>
+            <p className="hero-intro__cta">
+              <strong>Tadara</strong>
+              {' '}
+              est la lettre mensuelle qui révèle cette histoire fascinante dès 8 ans.
+            </p>
+          </div>
+
+          <aside className="hero-offer" aria-labelledby="hero-offer-title">
+            <div className="hero-offer__title-row">
+              <img
+                className="hero-offer__icon"
+                src="/images/hero/icons/famille.svg"
+                alt=""
+                width={46}
+                height={46}
+                aria-hidden="true"
+                decoding="async"
+              />
+              <h3 id="hero-offer-title" className="hero-offer__title">
+                Rejoignez les 100 Familles Fondatrices avant le lancement de septembre.
+              </h3>
+            </div>
+            <p className="hero-offer__description">
+              Inscrivez-vous gratuitement sur la liste d&apos;attente pour bloquer votre tarif pionnier
+              de 10€/mois garanti à vie (au lieu du futur tarif public) et obtenir votre accès prioritaire.
+            </p>
+            <form className="hero-offer__form" action="#" method="post">
+              <label className="hero-offer__field">
+                <span className="visually-hidden">Adresse email</span>
+                <input
+                  className="hero-offer__input"
+                  type="email"
+                  name="email"
+                  placeholder="Entrez votre adresse email"
+                  autoComplete="email"
+                  required
+                />
+                <span className="hero-offer__input-icon" aria-hidden="true">
+                  <img src="/images/hero/icons/enveloppe.svg" alt="" width={22} height={22} decoding="async" />
+                </span>
+              </label>
+              <button className="hero-offer__submit" type="submit">
+                Réserver mon accès prioritaire (gratuit)
+              </button>
             </form>
-          </div>
+          </aside>
 
-          <div className="hero-benefits">
-            
-            <div className="hero-benefits__item">
-              <img src="/images/hero/icons/cadeau.svg" alt="" />
-              <h4 className="hero-benefits__item-title">Zéro écran</h4>
-              <p className="hero-benefits__item-description">Une expérience 100% physique et tactile (papier, cire, vrais objets) qu'aucun algorithme ne peut remplacer.</p>
-            </div>
-            
-            <div className="hero-benefits__item">
-              <img src="" alt="" />
-              <h4 className="hero-benefits__item-title">Livré chez vous</h4>
-              <p className="hero-benefits__item-description">Chaque mois, une enveloppe vintage personnalisée directement dans sa boîte aux lettres.</p>
-            </div>
-            
-            <div className="hero-benefits__item">
-              <img src="" alt="" />
-              <h4 className="hero-benefits__item-title">Fier de ses racines</h4>
-              <p className="hero-benefits__item-description">Un contenu valorisant pour nourrir son identité, comprendre son histoire et grandir fier de qui il est.</p>
-            </div>
-            
-            <div className="hero-benefits__item">
-              <img src="" alt="" />
-              <h4 className="hero-benefits__item-title">Ludique et captivant</h4>
-              <p className="hero-benefits__item-description">Un format court et vivant (loin des manuels scolaires barbants) pour donner le goût de lire sans pression.</p>
-            </div>
-          </div>
-        </HeroContent>
+          <ul className="hero-benefits" role="list">
+            {HERO_BENEFITS.map((item) => (
+              <li className="hero-benefits__item" key={item.title}>
+                <span className="hero-benefits__icon">
+                  <img src={item.icon} alt="" decoding="async" width={40} height={40}/>
+                </span>
+                <h4 className="hero-benefits__title">{item.title}</h4>
+                <p className="hero-benefits__description">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <HeroVisual>
-          <HeroImage
+        <div className="hero__visual">
+          <img
+            className="hero__picture"
             src="/images/hero/hero-tadara.jpg"
-            alt="Enfant découvrant une enveloppe éducative sur un bureau avec livres et objets du quotidien"
+            alt="Enfant découvrant une enveloppe Tadara parmi livres et objets sur un bureau."
+            decoding="async"
           />
-          <HeroImageFade />
-        </HeroVisual>
-      </HeroInner>
-    </HeroSection>
+          <div className="hero__fade" aria-hidden="true" />
+        </div>
+      </div>
+    </HeroStyled>
   )
 }
 
-export default Hero
+const HeroStyled = styled.div`
+  padding-left: 5rem;
+`;
 
-const HeroSection = styled.section`
-  width: 100%;
-  min-height: 100svh;
-  background: var(--color-cream);
-  overflow: hidden;
-`
+const HeroHeaderStyled = styled.div`
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3rem;
+`;
 
-const HeroInner = styled.div`
-  display: grid;
-  grid-template-columns: 42% 58%;
-  min-height: 100svh;
 
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-`
-
-const HeroContent = styled.div`
-  background: var(--color-cream);
-  padding: 48px 48px 32px 48px;
-  position: relative;
-  z-index: 2;
-
+/* Bloc titre : serif sur le h1 de façon explicite ; le sous-titre garde aussi la pile titres comme avant le wrapper générique. */
+const HeroTitleStyled = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: clamp(0.3rem, 1.2vw, 0.55rem);
 
-  @media (max-width: 992px) {
-    order: 2;
-    padding: 24px;
-  }
-`
+  font-family: ${theme.typography.fontFamily.heading};
+  font-size: ${theme.typography.fontSize['3xl']};
+  text-shadow: ${theme.shadows.vintageCard};
+  line-height: 1.1;
 
-const HeroBrand = styled.div`
-  margin-bottom: clamp(1.25rem, 3.2vw, 2rem);
-  flex-shrink: 0;
-
-  a {
-    display: inline-block;
-    line-height: 0;
-    text-decoration: none;
-  }
-`
-
-const HeroLogo = styled.img`
-  display: block;
-  width: clamp(128px, 26vw, 220px);
-  height: auto;
-`
-
-const HeroVisual = styled.div`
-  position: relative;
-  min-height: 100svh;
-  overflow: hidden;
-  background: var(--color-cream);
-
-  @media (max-width: 992px) {
-    order: 1;
-    min-height: 42vh;
+  h1 {
+    margin-bottom: 15px;
   }
 
-  @media (max-width: 768px) {
-    min-height: 38vh;
+  .hero-title__highlight {
+    color: ${theme.colors.brand.secondary};
+    font-size: clamp(2rem, 4.5vw + 1rem, 4.5rem);
+    line-height: 1;
+  }
+
+  /* Empile décoration + H2 dans la même case : centrés ensemble sur tous les viewports */
+  .hero-subline-stack {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    justify-self: start;
+    align-self: start;
+    padding-left: clamp(1.75rem, 12vw - 2rem, 5.3125rem);
+    min-width: 0;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .hero-subline-stack .paint-background,
+  .hero-subline-stack .hero-subline {
+    grid-area: 1 / 1;
+  }
+
+  .paint-background {
+    width: clamp(240px, 42vw + 4rem, 340px);
+    height: auto;
+    z-index: 0;
+    pointer-events: none;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .hero-subline {
+    margin: 0;
+    padding: 0;
+    font-size: ${theme.typography.fontSize['4xl']};
+    color: ${theme.colors.brand.bgLight};
+    z-index: 1;
+    position: relative;
+    text-align: center;
   }
 `
-
-const HeroImage = styled.img`
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center center;
-
-  @media (max-width: 992px) {
-    object-position: center top;
+  
+  /* const HeroMainHeading = styled.h1`
+  
+  color: ${theme.colors.brand.primary};
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-left: 5rem;
+  
+  span {
+    color: ${theme.colors.brand.accent};
+    font-size: 64px;
   }
-`
 
-const HeroImageFade = styled.div`
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  /* Desktop : fondu horizontal de gauche vers droite */
-  background: linear-gradient(
-    90deg,
-    rgba(244, 230, 211, 1) 0%,
-    rgba(244, 230, 211, 0.92) 8%,
-    rgba(244, 230, 211, 0.72) 14%,
-    rgba(244, 230, 211, 0.38) 20%,
-    rgba(244, 230, 211, 0.12) 25%,
-    rgba(244, 230, 211, 0) 30%
-  );
-
-  @media (max-width: 992px) {
-    /* Mobile : fondu vertical vers le beige en bas */
-    background: linear-gradient(
-      180deg,
-      rgba(244, 230, 211, 0) 58%,
-      rgba(244, 230, 211, 0.18) 72%,
-      rgba(244, 230, 211, 0.5) 82%,
-      rgba(244, 230, 211, 0.82) 91%,
-      rgba(244, 230, 211, 1) 100%
-    );
+  .hero-subline__text{
+    font-size: 24px;
+    color: black;
   }
-`
+` */
+
+export default Hero

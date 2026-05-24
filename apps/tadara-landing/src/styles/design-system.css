@@ -6,7 +6,7 @@
   --color-cream: #f4e6d3;
   --color-cream-light: #faf1e4;
   --color-navy: #0b2a3d;
-  --color-gold: #b7893b;
+  --color-gold: #d4a35c;
   --color-brown: #6f4324;
   --color-text: #102a3a;
   --color-muted: #5f6b73;
@@ -23,8 +23,8 @@
   --container-padding-mobile: 24px;
 
   /* Polices déjà chargées dans index.html — repli système si bloquées */
-  --font-heading-stack: 'Cormorant Garamond', Georgia, 'Times New Roman',
-    serif;
+  --font-heading-stack: 'Playfair Display', 'Cormorant Garamond', Georgia,
+    'Times New Roman', serif;
   --font-body-stack: 'Plus Jakarta Sans', system-ui, -apple-system,
     'Segoe UI', Roboto, sans-serif;
 }
@@ -39,7 +39,7 @@ body {
   margin: 0;
   font-family: var(--font-body-stack);
   color: var(--color-text);
-  background-color: var(--color-cream-light);
+  background-color: #fdf8f3;
 }
 
 /* Libellés visuellement masqués mais lus par les lecteurs d’écran */
