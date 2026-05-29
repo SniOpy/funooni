@@ -14,7 +14,8 @@
   grid-template-columns: minmax(0, 46%) minmax(0, 54%);
   grid-template-rows: minmax(0, 1fr);
   align-items: stretch;
-  min-height: 100svh;
+  min-height: 900px;
+  max-height: 900px;
 }
 
 /* Colonne gauche — uniquement comportement grille, aucun typo ici */

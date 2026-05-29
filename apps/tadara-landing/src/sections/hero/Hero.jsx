@@ -31,9 +31,9 @@ const HERO_BENEFITS = [
 
 function Hero() {
   return (
-    <HeroStyled className="hero">
+    <HeroStyled >
       <div className="hero__inner">
-        <div className="hero__content">
+        <HeroContentStyled>
           <HeroHeaderStyled>
             <a href="/" className="hero__logo-link" aria-label="Tadara — accueil">
               <img
@@ -67,38 +67,38 @@ function Hero() {
             </div>
           </HeroTitleStyled>
 
-          <div className="hero-intro">
+          <HeroIntroStyled>
             <p className="hero-intro__lead">
-              Le savon qu&apos;il utilise, les chiffres qu&apos;il écrit à l&apos;école, le mot
-              &quot;algorithme&quot;... La civilisation arabo-musulmane a façonné son quotidien.
+              Le savon qu&apos;il utilise, les chiffres qu&apos;il écrit à l&apos;école,<br/> le mot
+              &quot;algorithme&quot;...La civilisation arabo-musulmane a façonné son quotidien.
             </p>
             <p className="hero-intro__cta">
               <strong>Tadara</strong>
               {' '}
               est la lettre mensuelle qui révèle cette histoire fascinante dès 8 ans.
             </p>
-          </div>
+          </HeroIntroStyled>
 
-          <aside className="hero-offer" aria-labelledby="hero-offer-title">
-            <div className="hero-offer__title-row">
+          <HeroOfferStyled>
+            <HeroOfferTitleStyled>
               <img
                 className="hero-offer__icon"
-                src="/images/hero/icons/famille.svg"
+                src="/images/hero/icons/family.png"
                 alt=""
-                width={46}
-                height={46}
+                  width={60}
+                  height={60}
                 aria-hidden="true"
                 decoding="async"
               />
               <h3 id="hero-offer-title" className="hero-offer__title">
                 Rejoignez les 100 Familles Fondatrices avant le lancement de septembre.
               </h3>
-            </div>
+            </HeroOfferTitleStyled>
             <p className="hero-offer__description">
               Inscrivez-vous gratuitement sur la liste d&apos;attente pour bloquer votre tarif pionnier
               de 10€/mois garanti à vie (au lieu du futur tarif public) et obtenir votre accès prioritaire.
             </p>
-            <form className="hero-offer__form" action="#" method="post">
+            <FormStyled action="#" method="post">
               <label className="hero-offer__field">
                 <span className="visually-hidden">Adresse email</span>
                 <input
@@ -116,21 +116,21 @@ function Hero() {
               <button className="hero-offer__submit" type="submit">
                 Réserver mon accès prioritaire (gratuit)
               </button>
-            </form>
-          </aside>
+            </FormStyled>
+          </HeroOfferStyled>
 
-          <ul className="hero-benefits" role="list">
+          <HeroBenefitsStyled role="list">
             {HERO_BENEFITS.map((item) => (
               <li className="hero-benefits__item" key={item.title}>
                 <span className="hero-benefits__icon">
-                  <img src={item.icon} alt="" decoding="async" width={40} height={40}/>
+                  <img src={item.icon} alt="" decoding="async" width={90} height={90}/>
                 </span>
                 <h4 className="hero-benefits__title">{item.title}</h4>
                 <p className="hero-benefits__description">{item.description}</p>
               </li>
             ))}
-          </ul>
-        </div>
+          </HeroBenefitsStyled>
+        </HeroContentStyled>
 
         <div className="hero__visual">
           <img
@@ -147,30 +147,61 @@ function Hero() {
 }
 
 const HeroStyled = styled.div`
-  padding-left: 5rem;
+`;
+
+const HeroContentStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  margin-inline: auto;
+  padding-bottom: 0.75rem;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
 `;
 
 const HeroHeaderStyled = styled.div`
   display: flex; 
   justify-content: space-between;
   align-items: center;
-  padding-top: 3rem;
+  padding-top: 1rem;
 `;
+
+const HeroIntroStyled = styled.div`
+  width: 410px;
+  padding: 0 0.5rem;
+  font-size: 15px;
+  line-height: 1.35;
+  color: ${theme.colors.brand.primaryLight};
+  font-family: ${theme.typography.fontFamily.body};
+
+  p + p {
+    margin-top: 0.35rem;
+  }
+`
 
 
 /* Bloc titre : serif sur le h1 de façon explicite ; le sous-titre garde aussi la pile titres comme avant le wrapper générique. */
 const HeroTitleStyled = styled.div`
   display: flex;
   flex-direction: column;
-  gap: clamp(0.3rem, 1.2vw, 0.55rem);
+  gap: 0.15rem;
 
   font-family: ${theme.typography.fontFamily.heading};
   font-size: ${theme.typography.fontSize['3xl']};
   text-shadow: ${theme.shadows.vintageCard};
-  line-height: 1.1;
+  line-height: 1.05;
 
   h1 {
-    margin-bottom: 15px;
+    margin-bottom: 0.35rem;
   }
 
   .hero-title__highlight {
@@ -186,7 +217,8 @@ const HeroTitleStyled = styled.div`
     align-items: center;
     justify-self: start;
     align-self: start;
-    padding-left: clamp(1.75rem, 12vw - 2rem, 5.3125rem);
+    padding-left: clamp(1.25rem, 10vw - 2rem, 4.5rem);
+    margin-top: -0.15rem;
     min-width: 0;
     width: max-content;
     max-width: 100%;
@@ -198,7 +230,7 @@ const HeroTitleStyled = styled.div`
   }
 
   .paint-background {
-    width: clamp(240px, 42vw + 4rem, 340px);
+    width: clamp(160px, 28vw + 1.5rem, 240px);
     height: auto;
     z-index: 0;
     pointer-events: none;
@@ -209,14 +241,123 @@ const HeroTitleStyled = styled.div`
   .hero-subline {
     margin: 0;
     padding: 0;
-    font-size: ${theme.typography.fontSize['4xl']};
+    font-size: ${theme.typography.fontSize['3xl']};
     color: ${theme.colors.brand.bgLight};
     z-index: 1;
     position: relative;
     text-align: center;
   }
 `
+
+const HeroOfferStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.75rem 1.125rem;
+  border:1px solid ${theme.colors.brand.accent};
+  border-radius: 10px;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+
+  .hero-offer__description {
+    line-height: 1.25;
+  }
+`
+
+const HeroOfferTitleStyled = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight:bold;
+  font-size: 14px;
+  line-height: 1.25;
+
+  img {
+    height: auto;
+  }
+`
+
+const FormStyled = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+
+  label {
+    margin-bottom: -12px;
+  }
+
+  input {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border:1px solid ${theme.colors.brand.accent};
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: ${theme.typography.fontFamily.body};
+    color: ${theme.colors.brand.primaryLight};
+    background-color: ${theme.colors.brand.bgLight};
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border:1px solid ${theme.colors.brand.primary};
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: ${theme.typography.fontFamily.body};
+    color: ${theme.colors.brand.textLight};
+    background-color: ${theme.colors.brand.primary};
+    text-transform: uppercase;
+    text-align: center;
+  }
   
+`
+
+const HeroBenefitsStyled = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  padding: 0.25rem 0 0;
+
+  li {
+    flex: 1;
+    min-width: 0;
+  }
+
+  img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    object-position: center;
+    border:1px solid ${theme.colors.brand.accent};
+    border-radius: 50px;
+    
+  }
+
+  h4 {
+    margin-top: 0.25rem;
+  }
+
+  p {
+    margin-top: 0.15rem;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+`
+
   /* const HeroMainHeading = styled.h1`
   
   color: ${theme.colors.brand.primary};
