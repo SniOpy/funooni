@@ -1,32 +1,9 @@
 /* ------------------------------------------------------------------
-   Design system global — tokens partagés (couleurs, rayons, ombres…)
+   Design system global — base vierge, à définir.
 ------------------------------------------------------------------ */
 
 :root {
-  --color-cream: #f4e6d3;
-  --color-cream-light: #faf1e4;
-  --color-navy: #0b2a3d;
-  --color-gold: #d4a35c;
-  --color-brown: #6f4324;
-  --color-text: #102a3a;
-  --color-muted: #5f6b73;
-  --color-white: #ffffff;
-
-  --radius-pill: 999px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
-
-  --shadow-soft: 0 18px 40px rgba(11, 42, 61, 0.16);
-  --shadow-button: 0 14px 26px rgba(11, 42, 61, 0.22);
-
-  --container-padding-desktop: clamp(40px, 5vw, 88px);
-  --container-padding-mobile: 24px;
-
-  /* Polices déjà chargées dans index.html — repli système si bloquées */
-  --font-heading-stack: 'Playfair Display', 'Cormorant Garamond', Georgia,
-    'Times New Roman', serif;
-  --font-body-stack: 'Plus Jakarta Sans', system-ui, -apple-system,
-    'Segoe UI', Roboto, sans-serif;
+  /* Tokens à définir (couleurs, typographies, espacements, rayons…) */
 }
 
 *,
@@ -37,12 +14,9 @@
 
 body {
   margin: 0;
-  font-family: var(--font-body-stack);
-  color: var(--color-text);
-  background-color: #fdf8f3;
 }
 
-/* Libellés visuellement masqués mais lus par les lecteurs d’écran */
+/* Libellés visuellement masqués mais lus par les lecteurs d'écran */
 .visually-hidden {
   position: absolute;
   width: 1px;
