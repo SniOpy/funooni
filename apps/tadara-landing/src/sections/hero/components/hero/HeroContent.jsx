@@ -83,8 +83,8 @@ const FormContentStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap:8px;
-  width: 60%;
-  margin-inline: 20%;
+  width: 80%;
+  margin-inline: 10%;
 
   input, button {
     border-radius: 30px;
@@ -96,12 +96,17 @@ const FormContentStyled = styled.form`
     color: rgb(43, 23, 18);
   }
 
+  input::placeholder {
+    color: rgb(43, 23, 18);
+    font-size: 16px;
+  }
+
   button {
     background-color: #2B1712;
     color: #fff;
     cursor: pointer;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
 
   }
 
