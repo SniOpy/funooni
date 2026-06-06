@@ -4,7 +4,6 @@ import Hero from './sections/hero/components/hero/Hero'
 function App() {
   return (
     <>
-      
       <Hero />
     </>
   )
