@@ -59,7 +59,7 @@ export const tadaraTheme = {
 
   typography: {
     fonts: {
-      heading: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+      heading: "'Playfair Display', Georgia, serif",
       body: "'Montserrat', 'Inter', Arial, sans-serif",
       accent: "'Cormorant Garamond', Georgia, serif",
     },
