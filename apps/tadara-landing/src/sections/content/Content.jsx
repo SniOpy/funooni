@@ -55,40 +55,63 @@ simples.
 }
 
 const ContentSectionStyled = styled.section`
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    background-color: ${tadaraTheme.colors.background.soft};
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 80px;
-
+    gap: 40px;
+    background-color: ${tadaraTheme.colors.background.cream};
+    padding: 80px;
 
     .story-letter-title {
         font-size: 52px;
         text-transform: uppercase;
         font-weight: 700;
-        color: #2B1712;
+        color: ${tadaraTheme.colors.text.primary};
         font-family: ${tadaraTheme.typography.fonts.heading};
         line-height: 1.1;
+        margin: 0;
     }
-  }
 `
 const ContentTitleStyled = styled.div`
-border: 1px solid blue;
+    width: 100%;
 `
 const ReceiveImagesStyled = styled.div`
-border: 1px solid green;
-display: flex;
-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    width: 100%;
 `
 const ReceiveImageStyled = styled.div`
-border: 1px solid yellow;
-width: 20%;
-display: flex;
-flex-direction: column;
-gap: 10px;  
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+
+    img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        object-position: center;
+        border: 2px solid #000;
+        display: block;
+    }
+
+    .receive-image-title {
+        font-family: ${tadaraTheme.typography.fonts.body};
+        font-size: 18px;
+        font-weight: 700;
+        color: ${tadaraTheme.colors.text.primary};
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .content-text {
+        font-family: ${tadaraTheme.typography.fonts.body};
+        font-size: 16px;
+        font-weight: 400;
+        color: ${tadaraTheme.colors.text.secondary};
+        line-height: 1.55;
+        margin: 0;
+    }
 `
 export default Content
