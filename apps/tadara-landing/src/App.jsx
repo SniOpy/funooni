@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import Hero from './sections/hero/components/hero/Hero'
 import { tadaraTheme } from './designSystem'
+import StoryLetter from './sections/storyletter/StoryLetter'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,7 +14,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Hero />
+        <Hero />
+        <StoryLetter />
     </>
   )
 }
