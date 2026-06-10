@@ -17,7 +17,7 @@ const HeroStyled = styled.section`
   grid-template-columns: ${tadaraTheme.layout.hero.gridDesktop};
   min-height: ${tadaraTheme.layout.hero.minHeight};
   background-color: ${tadaraTheme.colors.background.main};
-  padding: 0 2.3rem;
+  padding: 0 2.3rem 80px;
 
   @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
     grid-template-columns: ${tadaraTheme.layout.hero.gridTablet};
