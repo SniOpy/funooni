@@ -8,7 +8,7 @@ function HeroImage() {
   )
 }
 const HeroImageStyled = styled.div`
-  background-image: url('/images/hero/hero-tadara2.jpg');
+  background-image: url('/images/hero/tadara-hero-kids.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
