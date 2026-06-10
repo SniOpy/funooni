@@ -77,13 +77,13 @@ const ContentTitleStyled = styled.div`
 const ReceiveImagesStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    gap: 120px;
     width: 100%;
 `
 const ReceiveImageStyled = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     align-items: flex-start;
 
     img {
@@ -92,13 +92,13 @@ const ReceiveImageStyled = styled.div`
         aspect-ratio: 3 / 4;
         object-fit: cover;
         object-position: center;
-        border: 2px solid #000;
+        border: 3px solid #000;
         display: block;
     }
 
     .receive-image-title {
         font-family: ${tadaraTheme.typography.fonts.body};
-        font-size: 18px;
+        font-size: 26px;
         font-weight: 700;
         color: ${tadaraTheme.colors.text.primary};
         margin: 0;
@@ -107,11 +107,13 @@ const ReceiveImageStyled = styled.div`
 
     .content-text {
         font-family: ${tadaraTheme.typography.fonts.body};
-        font-size: 16px;
+        font-size: 22px;
         font-weight: 400;
         color: ${tadaraTheme.colors.text.secondary};
         line-height: 1.55;
         margin: 0;
     }
+
+   
 `
 export default Content
