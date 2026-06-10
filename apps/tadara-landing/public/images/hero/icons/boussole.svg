@@ -1,0 +1,16 @@
+<!-- Boussole dorée ligne fine — visuel proche maquette sous le logo TADARA -->
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+  <circle cx="18" cy="18" r="15.75" stroke="#D4A35C" stroke-width="1.05" opacity="0.95" />
+  <circle cx="18" cy="18" r="2" fill="#D4A35C" />
+  <!-- Aiguilles simplifiées (N/S) -->
+  <path
+    fill="#D4A35C"
+    d="M18 10.5l4.75 17.75L18 26.85l-4.74 1.41L18 10.5z"
+    opacity="0.9"
+  />
+  <path
+    fill="#D4A35C"
+    fill-opacity="0.38"
+    d="M18 25.95l-.38 1.2-3.92-17.43 4.27 16.33h.03z"
+  />
+</svg>
