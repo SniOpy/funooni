@@ -29,12 +29,9 @@ const StoryLetterSectionStyled = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: ${tadaraTheme.colors.background.cream};
-
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding: 80px;
     padding-left: 80px;
-
+    background-color: ${tadaraTheme.colors.background.cream};
 
     .story-letter-title {
         font-size: 52px;
