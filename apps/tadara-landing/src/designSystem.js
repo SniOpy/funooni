@@ -29,7 +29,7 @@ export const tadaraTheme = {
     brand: {
       primary: "#351912",     // chocolat très sombre
       secondary: "#A9825A",   // doré ancien / manuscrit
-      accent: "#6F8F99",      // bleu patrimonial
+        accent: "#6F8F99",      // bleu patrimonial
       highlight: "#D8B77A",   // doré doux
     },
 
