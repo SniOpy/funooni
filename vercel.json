@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "cd apps/tadara-landing && npm ci",
+  "devCommand": "cd apps/tadara-landing && npm run dev",
+  "buildCommand": "cd apps/tadara-landing && npm run build",
+  "outputDirectory": "apps/tadara-landing/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

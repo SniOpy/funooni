@@ -3,8 +3,14 @@ import Hero from './sections/hero/components/hero/Hero'
 import { tadaraTheme } from './designSystem'
 import StoryLetter from './sections/storyletter/StoryLetter'
 import Content from './sections/content/Content'
-import { HeroStoryDivider, StoryContentDivider } from './sections/transitions/SectionDividers'
+import {
+  ContentReasonsDivider,
+  HeroStoryDivider,
+  ReasonsMoreLetterDivider,
+  StoryContentDivider,
+} from './sections/transitions/SectionDividers'
 import Reasons from './sections/reasons/Reasons'
+import MoreLetter from './sections/more-letter/MoreLetter'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,7 +34,10 @@ function App() {
       <StoryLetter />
       <StoryContentDivider />
       <Content />
+      <ContentReasonsDivider />
       <Reasons />
+      <ReasonsMoreLetterDivider />
+      <MoreLetter />
     </Page>
   )
 }
