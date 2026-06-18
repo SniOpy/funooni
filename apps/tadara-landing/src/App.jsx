@@ -3,8 +3,9 @@ import Hero from './sections/hero/components/hero/Hero'
 import { tadaraTheme } from './designSystem'
 import StoryLetter from './sections/storyletter/StoryLetter'
 import Content from './sections/content/Content'
-import { HeroStoryDivider, StoryContentDivider } from './sections/transitions/SectionDividers'
 import Reasons from './sections/reasons/Reasons'
+import MoreLetter from './sections/more-letter/MoreLetter'
+import WhyStart from './sections/whystart/WhyStart'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -24,11 +25,11 @@ function App() {
     <Page>
       <GlobalStyle />
       <Hero />
-      <HeroStoryDivider />
       <StoryLetter />
-      <StoryContentDivider />
       <Content />
       <Reasons />
+      <MoreLetter />
+      <WhyStart />
     </Page>
   )
 }
