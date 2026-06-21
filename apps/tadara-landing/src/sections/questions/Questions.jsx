@@ -11,12 +11,12 @@ function Questions() {
 
       <QuestiosContentStyled>
         <QuestiosItemStyled>
-            <img src="/images/questions/engagement-financier.png" alt="image engagement financier" width={400}/>
+            <img src="/images/questions/engagement-financier.png" alt="image engagement financier" width={500}/>
             <h2>Non l'inscription est entièrement gratuite <br/>et sans engagement</h2>
         </QuestiosItemStyled>
         <QuestiosItemStyled>
-            <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={400}/>
-            <h2>Le tarif sera dévoilé lors du lancement.<br />Les premiers inscrits bénéficient automatiquement <br/>d'une offre de lancement réservée aux familles fondatrices.</h2>
+            <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={500}/>
+            <h2>Le tarif sera dévoilé lors du lancement.<br />Les premiers inscrits bénéficient automatiquement <br/>d'une offre de lancement réservée aux familles fondatrices</h2>
         </QuestiosItemStyled>
       </QuestiosContentStyled>
     </QuestionsSectionStyled>
@@ -41,16 +41,18 @@ const QuestionsTitleStyled = styled.div`
     margin: 0;
     `
 const QuestiosContentStyled = styled.div`
-  padding-left : 100px;
+  padding-left : ${spacing[24]};
  `
 const QuestiosItemStyled = styled.div`
   display: flex;
   align-items: center;
-  gap: ${spacing[10]};
+  gap: ${spacing[20]};
 
+  
     h2 {
-      padding: 0 40px;
-      font-size: 34px;
+      padding: 5px ${spacing[10]};
+      margin-bottom: 60px;
+      font-size: ${tadaraTheme.typography.sizes['3xl']};
       font-weight: ${tadaraTheme.typography.weights.regular};
       color: ${tadaraTheme.colors.text.primary};
       font-family: ${tadaraTheme.typography.fonts.body};
