@@ -6,6 +6,7 @@ import Content from './sections/content/Content'
 import Reasons from './sections/reasons/Reasons'
 import MoreLetter from './sections/more-letter/MoreLetter'
 import WhyStart from './sections/whystart/WhyStart'
+import Questions from './sections/questions/Questions'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,6 +31,8 @@ function App() {
       <Reasons />
       <MoreLetter />
       <WhyStart />
+      <Questions />
+
     </Page>
   )
 }
