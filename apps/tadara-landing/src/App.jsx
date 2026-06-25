@@ -6,11 +6,25 @@ import Content from './sections/content/Content'
 import Reasons from './sections/reasons/Reasons'
 import MoreLetter from './sections/more-letter/MoreLetter'
 import WhyStart from './sections/whystart/WhyStart'
+import Questions from './sections/questions/Questions'
+import LaunchOffer from './sections/last-offer/LaunchOffer'
 
 const GlobalStyle = createGlobalStyle`
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     background-color: ${tadaraTheme.colors.background.soft};
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
   }
 `
 
@@ -30,6 +44,9 @@ function App() {
       <Reasons />
       <MoreLetter />
       <WhyStart />
+      <Questions />
+      <LaunchOffer />
+
     </Page>
   )
 }

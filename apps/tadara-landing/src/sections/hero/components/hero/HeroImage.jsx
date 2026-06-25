@@ -14,6 +14,7 @@ const HeroImageStyled = styled.div`
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
+  min-height: 620px;
 
   &::after {
     content: '';
@@ -27,6 +28,14 @@ const HeroImageStyled = styled.div`
       ${tadaraTheme.colors.background.main} 100%
     );
     pointer-events: none;
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    min-height: 460px;
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    min-height: 380px;
   }
 `
 export default HeroImage
