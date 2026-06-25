@@ -39,7 +39,7 @@ function Content() {
             </p>
           </ReceiveImageStyled>
           <ReceiveImageStyled>
-            <img src="/images/content/postcard.png" width={240} height={380} alt="lettre" />
+            <img src="/images/content/postcard.jpg" width={240} height={380} alt="lettre" />
             <h2 className="receive-image-title">La carte postale</h2>
             <p className='content-text'>Une vraie carte postale
               à écrire à la main et à

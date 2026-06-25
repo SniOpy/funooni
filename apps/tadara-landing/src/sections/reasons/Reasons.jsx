@@ -55,7 +55,7 @@ function Reasons() {
           </div>
         </ReasonsBulletsStyled>
         <ReasonsImageStyled>
-          <img src="/images/reasons/fillette-letter.png" width={700} height={700} alt="Reasons image" />
+          <img src="/images/reasons/fillette-letter.jpg" width={700} height={700} alt="Reasons image" />
         </ReasonsImageStyled>
       </ReasonsContentStyled>
     </ReasonsSectionStyled>
