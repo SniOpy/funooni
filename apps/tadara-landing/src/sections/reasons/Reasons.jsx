@@ -78,6 +78,14 @@ const ReasonsSectionStyled = styled.section`
     line-height: ${typography.lineHeights.heading};
     margin: 0;
   }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    padding: ${spacing[12]} ${spacing[6]};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    padding: ${spacing[10]} ${spacing[5]};
+  }
 `
 
 const ReasonsTitleStyled = styled.div`
@@ -95,16 +103,21 @@ const ReasonsTitleStyled = styled.div`
 const ReasonsContentStyled = styled.div`
   display: flex;
   padding: 0;
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    flex-direction: column;
+    gap: ${spacing[8]};
+  }
 `
 
 const ReasonsBulletsStyled = styled.div`
   display: flex;
   width: 50%;
-  font-size: ${typography.sizes['2xl']};
+  font-size: clamp(1.125rem, 2.2vw, ${typography.sizes['2xl']});
   font-weight: ${typography.weights.medium};
   color: ${colors.text.primary};
   font-family: ${typography.fonts.body};
-  margin-top : 60px;
+  margin-top: ${spacing[12]};
 
   li {
     list-style-type: none;
@@ -116,7 +129,24 @@ const ReasonsBulletsStyled = styled.div`
   .reasons-bullet-list {
     display: flex;
     flex-direction: column;
-    gap: ${spacing[10]};
+    gap: ${spacing[8]};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    li {
+      gap: ${spacing[4]};
+      align-items: flex-start;
+    }
+
+    .reasons-bullet-list {
+      padding: 0;
+      gap: ${spacing[6]};
+    }
   }
 `
 
@@ -127,7 +157,14 @@ const ReasonsImageStyled = styled.div`
   width: 60%;
 
   img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
     border-radius: 50px;
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    width: 100%;
   }
 `
 

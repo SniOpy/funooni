@@ -33,6 +33,14 @@ const WhyStartSectionStyled = styled.div`
   gap: ${spacing[10]};
   padding: ${spacing[20]};
   background-color: ${colors.background.cream};
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    padding: ${spacing[12]} ${spacing[6]};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    padding: ${spacing[10]} ${spacing[5]};
+  }
 `
 const WhyStartTitleStyled = styled.div`
     
@@ -43,6 +51,11 @@ const WhyStartTitleStyled = styled.div`
     font-family: ${tadaraTheme.typography.fonts.heading};
     line-height: ${tadaraTheme.typography.lineHeights.heading};
     margin: 0;
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4.6vw, 3.25rem);
+    }
     `
 const WhyStartContentStyled = styled.div``
 
@@ -52,6 +65,8 @@ const WhyStartContentItemStyled = styled.div`
     gap: ${spacing[10]};
 
     img {
+        width: min(100%, 800px);
+        height: auto;
         border-radius: ${spacing[10]};
     }
 
@@ -64,7 +79,7 @@ const WhyStartContentItemStyled = styled.div`
         padding-top: 50px;
         
         li {
-            font-size: 28px;
+            font-size: clamp(1.125rem, 2.2vw, 1.75rem);
             font-weight: ${typography.weights.medium};
             font-family: ${typography.fonts.body};
             line-height: ${typography.lineHeights.body};
@@ -75,6 +90,17 @@ const WhyStartContentItemStyled = styled.div`
             text-wrap: wrap;
             word-wrap: break-word;
         }
+    }
+
+    @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+      flex-direction: column;
+      gap: ${spacing[6]};
+
+      ul {
+        padding-top: 0;
+        gap: ${spacing[6]};
+        padding-left: 0;
+      }
     }
 `
 
