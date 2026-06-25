@@ -29,6 +29,14 @@ const QuestionsSectionStyled = styled.div`
   gap: ${spacing[10]};
   padding: ${spacing[20]};
   background-color: ${colors.background.soft};
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    padding: ${spacing[12]} ${spacing[6]};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    padding: ${spacing[10]} ${spacing[5]};
+  }
 `
 const QuestionsTitleStyled = styled.div`
     
@@ -39,24 +47,48 @@ const QuestionsTitleStyled = styled.div`
     font-family: ${tadaraTheme.typography.fonts.heading};
     line-height: ${tadaraTheme.typography.lineHeights.heading};
     margin: 0;
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4.6vw, 3.25rem);
+    }
     `
 const QuestiosContentStyled = styled.div`
-  padding-left : ${spacing[24]};
+  padding-left: ${spacing[24]};
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    padding-left: 0;
+  }
  `
 const QuestiosItemStyled = styled.div`
   display: flex;
   align-items: center;
   gap: ${spacing[20]};
 
+  img {
+    width: min(100%, 500px);
+    height: auto;
+  }
+
   
     h2 {
-      padding: 5px ${spacing[10]};
-      margin-bottom: 60px;
-      font-size: ${tadaraTheme.typography.sizes['3xl']};
+      padding: ${spacing[1]} ${spacing[10]};
+      margin: 0;
+      font-size: clamp(1.25rem, 2.6vw, ${tadaraTheme.typography.sizes['3xl']});
       font-weight: ${tadaraTheme.typography.weights.regular};
       color: ${tadaraTheme.colors.text.primary};
       font-family: ${tadaraTheme.typography.fonts.body};
       line-height: ${tadaraTheme.typography.lineHeights.body};
+    }
+
+    @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: ${spacing[5]};
+
+      h2 {
+        padding: 0;
+      }
     }
  `
 

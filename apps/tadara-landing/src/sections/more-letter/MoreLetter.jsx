@@ -83,7 +83,8 @@ const MoreLetterSectionStyled = styled.section`
 
   .more-letter-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: ${spacing[6]};
 
     .more-letter-content-item {
         display: flex;
@@ -99,7 +100,7 @@ const MoreLetterSectionStyled = styled.section`
 
     h2 {
         font-family: ${tadaraTheme.typography.fonts.body};
-        font-size: 26px;
+        font-size: clamp(1.25rem, 2.2vw, 1.625rem);
         font-weight: 700;
         color: ${tadaraTheme.colors.text.primary};
         margin: 0;
@@ -108,7 +109,7 @@ const MoreLetterSectionStyled = styled.section`
 
     p {
         font-family: ${tadaraTheme.typography.fonts.body};
-        font-size: 22px;
+        font-size: clamp(1rem, 2vw, 1.375rem);
         font-weight: 400;
         color: ${tadaraTheme.colors.text.secondary};
         line-height: 1.55;
@@ -116,11 +117,29 @@ const MoreLetterSectionStyled = styled.section`
     }
 
     img {
+        width: 100%;
+        height: auto;
         border-radius: 50px;
     }
 
     .more-letter-content-item {
-        width:460px;
+        width: 100%;
+    }
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    padding: ${spacing[12]} ${spacing[6]};
+
+    .more-letter-content {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    padding: ${spacing[10]} ${spacing[5]};
+
+    .more-letter-content {
+      grid-template-columns: 1fr;
     }
   }
 `

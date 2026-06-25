@@ -33,9 +33,11 @@ function HeroContent() {
 }
 
 const HeroContentStyled = styled.div`
+  width: min(100%, 760px);
 
   h1 {
-    font-size: 52px;
+    margin: 0;
+    font-size: clamp(2rem, 4.6vw, 3.25rem);
     text-transform: uppercase;
     font-weight: 700;
     color: #2B1712;
@@ -44,13 +46,14 @@ const HeroContentStyled = styled.div`
   }
 
   .hero-subtitle {
-    font-size: 22px;
+    margin: 0;
+    font-size: clamp(1.125rem, 2.1vw, 1.375rem);
     font-family: 'Montserrat';
     font-weight: 400;
     color: #4B3A34;
-    padding-left: 30px;
-    line-height: 1.2;
-    width:80%;
+    padding-left: clamp(0.5rem, 2vw, 1.875rem);
+    line-height: 1.35;
+    width: min(100%, 90%);
 
 
     span {
@@ -63,18 +66,39 @@ const HeroContentStyled = styled.div`
   .hero-subtitle-hr {
     background-color: #717373;
     height: 1px;
-    width: 50%;
-    margin-inline: 20%;
+    width: min(100%, 420px);
+    margin: 0 auto;
+    border: 0;
   }
 
   .form-content {
-    font-size: 14px;
+    font-size: ${tadaraTheme.typography.sizes.sm};
     font-family: "Montserrat";
     font-weight: 400;
     color: rgb(43, 23, 18);
-    width: 80%;
-    padding-left: 3px;
-    margin-inline: 2%;
+    width: min(100%, 560px);
+    padding-left: 0;
+    margin-inline: 0;
+    margin-top: ${tadaraTheme.spacing[4]};
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.45;
+    }
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    width: 100%;
+
+    .hero-subtitle {
+      padding-left: 0;
+      width: 100%;
+    }
+
+    .form-content {
+      width: 100%;
+    }
   }
 
 `
@@ -82,18 +106,20 @@ const HeroContentStyled = styled.div`
 const FormContentStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap:8px;
-  width: 80%;
-  margin-inline: 10%;
+  gap: ${tadaraTheme.spacing[2]};
+  width: min(100%, 430px);
+  margin-top: ${tadaraTheme.spacing[3]};
+  margin-inline: 0;
 
   input, button {
-    border-radius: 30px;
-    height:45px;
+    border-radius: ${tadaraTheme.radius.pill};
+    height: 45px;
     text-align: center;
-    font-family: "Montserrat";
+    font-family: ${tadaraTheme.typography.fonts.body};
     font-weight: 400;
-    font-size: 14px;
-    color: rgb(43, 23, 18);
+    font-size: ${tadaraTheme.typography.sizes.sm};
+    color: ${tadaraTheme.colors.text.primary};
+    width: 100%;
   }
 
   input {
@@ -103,8 +129,8 @@ const FormContentStyled = styled.form`
   }
 
   input::placeholder {
-    color: ${tadaraTheme.colors.text.primary};
-    font-size: 16px;
+    color: ${tadaraTheme.colors.text.subtle};
+    font-size: ${tadaraTheme.typography.sizes.base};
   }
 
   button {
@@ -112,7 +138,7 @@ const FormContentStyled = styled.form`
     color: #fff;
     cursor: pointer;
     font-weight: 600;
-    font-size: 16px;
+    font-size: ${tadaraTheme.typography.sizes.base};
     transition: background-color ${tadaraTheme.motion.duration.normal} ${tadaraTheme.motion.easing.default};
 
     &:hover {

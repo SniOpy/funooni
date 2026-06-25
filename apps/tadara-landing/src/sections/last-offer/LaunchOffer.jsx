@@ -39,6 +39,15 @@ const LaunchOfferSectionStyled = styled.section`
   gap: ${spacing[10]};
   padding: ${spacing[20]};
   background-color: ${colors.background.cream};
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    flex-direction: column;
+    padding: ${spacing[12]} ${spacing[6]};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    padding: ${spacing[10]} ${spacing[5]};
+  }
 `
 
 const LaunchOfferContentStyled = styled.div`
@@ -50,7 +59,7 @@ const LaunchOfferContentStyled = styled.div`
   h1 {
     margin: 0;
     font-family: ${typography.fonts.heading};
-    font-size: ${typography.sizes['4xl']};
+    font-size: clamp(2rem, 4.6vw, ${typography.sizes['4xl']});
     font-weight: ${typography.weights.bold};
     color: ${colors.text.primary};
     line-height: ${typography.lineHeights.heading};
@@ -60,7 +69,7 @@ const LaunchOfferContentStyled = styled.div`
   p {
     margin: 0;
     font-family: ${typography.fonts.body};
-    font-size: ${typography.sizes['2xl']};
+    font-size: clamp(1rem, 2.2vw, ${typography.sizes['2xl']});
     font-weight: ${typography.weights.regular};
     color: ${colors.text.secondary};
     line-height: ${typography.lineHeights.body};
@@ -69,7 +78,7 @@ const LaunchOfferContentStyled = styled.div`
 
   input {
     margin-top: ${spacing[5]};
-    width: 60%;
+    width: min(100%, 420px);
     height: 45px;
     border: 2px solid ${colors.border.medium};
     border-radius: ${radius.pill};
@@ -83,7 +92,7 @@ const LaunchOfferContentStyled = styled.div`
   }
 
   button {
-    width: 60%;
+    width: min(100%, 420px);
     border: 2px solid #ece6e6;
     border-radius: ${radius.pill};
     padding: ${spacing[4]} ${spacing[8]};
@@ -101,13 +110,21 @@ const LaunchOfferContentStyled = styled.div`
   }
 
   span {
-    width: 60%;
+    width: min(100%, 420px);
     text-align: center;
     font-family: ${typography.fonts.body};
     font-size: ${typography.sizes['2xl']};
     font-weight: ${typography.weights.regular};
     color: ${colors.text.primary};
     line-height: ${typography.lineHeights.body};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    width: 100%;
+
+    p {
+      max-width: 100%;
+    }
   }
 `
 
@@ -121,6 +138,10 @@ const LaunchOfferImageStyled = styled.div`
     height: auto;
     border-radius: ${spacing[10]};
     object-fit: cover;
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    width: 100%;
   }
 `
 
