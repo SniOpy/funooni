@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import HeroContent from "./HeroContent"
 
+import { tadaraTheme } from "../../../../designSystem"
+
 function HeroInner() {
   return (
     <HeroInnerStyled>
@@ -14,12 +16,30 @@ function HeroInner() {
 }
 
 const HeroInnerStyled = styled.div`
-  padding: 50px 70px;
+  padding: clamp(2rem, 5vw, 3.125rem) clamp(1rem, 4vw, 4.375rem);
 
   .logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    img:first-child {
+      width: clamp(120px, 18vw, 180px);
+      height: auto;
+    }
+
+    img:last-child {
+      width: clamp(140px, 20vw, 200px);
+      height: auto;
+    }
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+    padding: ${tadaraTheme.spacing[6]} ${tadaraTheme.spacing[5]};
+
+    .logo {
+      gap: ${tadaraTheme.spacing[4]};
+    }
   }
 `
 

@@ -39,7 +39,7 @@ function Content() {
             </p>
           </ReceiveImageStyled>
           <ReceiveImageStyled>
-            <img src="/images/content/postcard.png" width={240} height={380} alt="lettre" />
+            <img src="/images/content/postcard.jpg" width={240} height={380} alt="lettre" />
             <h2 className="receive-image-title">La carte postale</h2>
             <p className='content-text'>Une vraie carte postale
               à écrire à la main et à
@@ -57,18 +57,26 @@ function Content() {
 const ContentSectionStyled = styled.section`
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    padding: 80px;
+    gap: ${tadaraTheme.spacing[10]};
+    padding: ${tadaraTheme.spacing[20]};
     background-color: ${tadaraTheme.colors.background.soft};
 
     .story-letter-title {
-        font-size: 52px;
+        font-size: clamp(2rem, 4.6vw, 3.25rem);
         text-transform: uppercase;
         font-weight: 700;
         color: ${tadaraTheme.colors.text.primary};
         font-family: ${tadaraTheme.typography.fonts.heading};
         line-height: 1.1;
         margin: 0;
+    }
+
+    @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+      padding: ${tadaraTheme.spacing[12]} ${tadaraTheme.spacing[6]};
+    }
+
+    @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+      padding: ${tadaraTheme.spacing[10]} ${tadaraTheme.spacing[5]};
     }
 `
 const ContentTitleStyled = styled.div`
@@ -77,13 +85,21 @@ const ContentTitleStyled = styled.div`
 const ReceiveImagesStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 120px;
+    gap: ${tadaraTheme.spacing[10]};
     width: 100%;
+
+    @media (max-width: ${tadaraTheme.breakpoints.desktop}) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+      grid-template-columns: 1fr;
+    }
 `
 const ReceiveImageStyled = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: ${tadaraTheme.spacing[6]};
     align-items: flex-start;
 
     img {
@@ -98,7 +114,7 @@ const ReceiveImageStyled = styled.div`
 
     .receive-image-title {
         font-family: ${tadaraTheme.typography.fonts.body};
-        font-size: 26px;
+        font-size: clamp(1.25rem, 2.5vw, 1.625rem);
         font-weight: 700;
         color: ${tadaraTheme.colors.text.primary};
         margin: 0;
@@ -107,7 +123,7 @@ const ReceiveImageStyled = styled.div`
 
     .content-text {
         font-family: ${tadaraTheme.typography.fonts.body};
-        font-size: 22px;
+        font-size: clamp(1rem, 2.1vw, 1.375rem);
         font-weight: 400;
         color: ${tadaraTheme.colors.text.secondary};
         line-height: 1.55;
