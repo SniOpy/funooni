@@ -7,6 +7,7 @@ import Reasons from './sections/reasons/Reasons'
 import MoreLetter from './sections/more-letter/MoreLetter'
 import WhyStart from './sections/whystart/WhyStart'
 import Questions from './sections/questions/Questions'
+import LaunchOffer from './sections/last-offer/LaunchOffer'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -32,6 +33,7 @@ function App() {
       <MoreLetter />
       <WhyStart />
       <Questions />
+      <LaunchOffer />
 
     </Page>
   )

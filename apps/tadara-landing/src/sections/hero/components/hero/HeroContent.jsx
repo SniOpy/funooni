@@ -96,8 +96,14 @@ const FormContentStyled = styled.form`
     color: rgb(43, 23, 18);
   }
 
+  input {
+    border: 2px solid ${tadaraTheme.colors.border.medium};
+    background-color: ${tadaraTheme.colors.form.inputBg};
+    color: ${tadaraTheme.colors.text.primary};
+  }
+
   input::placeholder {
-    color: rgb(43, 23, 18);
+    color: ${tadaraTheme.colors.text.primary};
     font-size: 16px;
   }
 
@@ -107,6 +113,11 @@ const FormContentStyled = styled.form`
     cursor: pointer;
     font-weight: 600;
     font-size: 16px;
+    transition: background-color ${tadaraTheme.motion.duration.normal} ${tadaraTheme.motion.easing.default};
+
+    &:hover {
+      background-color: ${tadaraTheme.colors.form.buttonHover};
+    }
 
   }
 
