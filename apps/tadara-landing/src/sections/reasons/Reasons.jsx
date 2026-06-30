@@ -122,8 +122,19 @@ const ReasonsBulletsStyled = styled.div`
   li {
     list-style-type: none;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 30px;
+  }
+
+  .reasons-bullet-icon {
+    flex-shrink: 0;
+    display: flex;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
   }
 
   .reasons-bullet-list {

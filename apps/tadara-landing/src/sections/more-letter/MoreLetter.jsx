@@ -116,9 +116,10 @@ const MoreLetterSectionStyled = styled.section`
         margin: 0;
     }
 
-    img {
+    .more-letter-content-item-image {
         width: 100%;
-        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
         border-radius: 50px;
     }
 
