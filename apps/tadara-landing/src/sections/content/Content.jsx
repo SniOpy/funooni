@@ -21,17 +21,16 @@ function Content() {
           </ReceiveImageStyled>
           <ReceiveImageStyled>
             <img src="/images/content/stamp.jpg" width={260} height={350} alt="lettre" />
-            <h2 className="receive-image-title">La carte collector</h2>
-            <p className='content-text'>Une carte inspirée des
-                timbres anciens, à
-                collectionner
-                précieusement.
+            <h2 className="receive-image-title">Le timbre collector</h2>
+            <p className='content-text'>
+              Un timbre illustré au style vintage, à conserver et à collectionner au fil des mois.
             </p>
           </ReceiveImageStyled>
+
           <ReceiveImageStyled>
             <img src="/images/content/stickers.jpg" width={240} height={380} alt="lettre" />
             <h2 className="receive-image-title">Les stickers</h2>
-            <p className='content-text'>Des stickers pop &
+            <p className='content-text'>3 grands stickers pop &
               modernes pour
               montrer que cet
               héritage est bien

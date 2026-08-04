@@ -16,7 +16,8 @@ function Questions() {
         </QuestiosItemStyled>
         <QuestiosItemStyled>
             <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={500}/>
-            <h2>Le tarif sera dévoilé lors du lancement.<br />Les premiers inscrits bénéficient automatiquement <br/>d'une offre de lancement réservée aux familles fondatrices</h2>
+            <h2>Le tarif sera dévoilé lors du lancement. Les premières familles inscrites bénéficieront d’un
+tarif préférentiel.</h2>
         </QuestiosItemStyled>
       </QuestiosContentStyled>
     </QuestionsSectionStyled>
