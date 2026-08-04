@@ -22,7 +22,7 @@ function HeroContent() {
           ouverture des abonnements
         </h2>
         <FormContentStyled>
-          <input type="email" placeholder="Entrez votre adresse email" />
+          <input type="email" placeholder="votre@email.com" />
           <button type="submit">Je veux être informé du lancement</button>
         </FormContentStyled>
       </div>

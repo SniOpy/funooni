@@ -11,48 +11,18 @@ function Reasons() {
       </ReasonsTitleStyled>
       <ReasonsContentStyled>
         <ReasonsBulletsStyled>
-          <div className="reasons-bullets">
-            <ul className="reasons-bullet-list">
-              <li className="reasons-bullet-item">
-                <span className="reasons-bullet-icon">
-                  <img src="/images/icons/icon-done.png" alt="Bullet point icon" width={50} height={50} />
-                </span>
-                Celui qui pose mille questions
-              </li>
-              <li className="reasons-bullet-item">
-                <span className="reasons-bullet-icon">
-                  <img src="/images/icons/icon-done.png" alt="Bullet point icon" width={50} height={50} />
-                </span>
-                Celui dont les parents veulent lui ouvrir les yeux
-                sur une civilisation qui a changé le monde et
-                qu'on raconte encore trop peu
-              </li>
-              <li className="reasons-bullet-item">
-                <span className="reasons-bullet-icon">
-                  <img src="/images/icons/icon-done.png" alt="Bullet point icon" width={50} height={50} />
-                </span>
-                Celui dont les parents veulent transmettre
-              </li>
-              <li className="reasons-bullet-item">
-                <span className="reasons-bullet-icon">
-                  <img src="/images/icons/icon-done.png" alt="Bullet point icon" width={50} height={50} />
-                </span>
-                Celui qui boude la lecture
-              </li>
-              <li className="reasons-bullet-item">
-                <span className="reasons-bullet-icon">
-                  <img src="/images/icons/icon-done.png" alt="Bullet point icon" width={50} height={50} />
-                </span>
-                Celui qui passe trop de temps sur les écrans
-              </li>
-              <li className="reasons-bullet-item">
-                <span className="reasons-bullet-icon">
-                  <img src="/images/icons/icon-done.png" alt="Bullet point icon" width={50} height={50} />
-                </span>
-                Celui qui aime collectionner
-              </li>
-            </ul>
-          </div>
+          <ul className="reasons-bullet-list">
+            <li>Celui qui pose mille questions</li>
+            <li>
+              Celui dont les parents veulent lui ouvrir les yeux
+              sur une civilisation qui a changé le monde et
+              qu'on raconte encore trop peu
+            </li>
+            <li>Celui dont les parents veulent transmettre</li>
+            <li>Celui qui boude la lecture</li>
+            <li>Celui qui passe trop de temps sur les écrans</li>
+            <li>Celui qui aime collectionner</li>
+          </ul>
         </ReasonsBulletsStyled>
         <ReasonsImageStyled>
           <img src="/images/reasons/fillette-letter.jpg" width={700} height={700} alt="Reasons image" />
@@ -113,49 +83,33 @@ const ReasonsContentStyled = styled.div`
 const ReasonsBulletsStyled = styled.div`
   display: flex;
   width: 50%;
-  font-size: clamp(1.125rem, 2.2vw, ${typography.sizes['2xl']});
-  font-weight: ${typography.weights.medium};
-  color: ${colors.text.primary};
-  font-family: ${typography.fonts.body};
   margin-top: ${spacing[12]};
-
-  li {
-    list-style-type: none;
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-  }
-
-  .reasons-bullet-icon {
-    flex-shrink: 0;
-    display: flex;
-
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-    }
-  }
 
   .reasons-bullet-list {
     display: flex;
     flex-direction: column;
-    gap: ${spacing[8]};
+    gap: ${spacing[10]};
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    font-size: clamp(1.125rem, 2.2vw, 1.75rem);
+    font-weight: ${typography.weights.medium};
+    font-family: ${typography.fonts.body};
+    line-height: ${typography.lineHeights.body};
+    color: ${colors.text.primary};
+    margin: 0;
+    padding: 0 1rem 0 0;
+    text-align: left;
   }
 
   @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
     width: 100%;
     margin-top: 0;
-  }
-
-  @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
-    li {
-      gap: ${spacing[4]};
-      align-items: flex-start;
-    }
 
     .reasons-bullet-list {
-      padding: 0;
       gap: ${spacing[6]};
     }
   }

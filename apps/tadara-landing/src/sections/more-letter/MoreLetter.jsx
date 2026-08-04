@@ -19,12 +19,8 @@ function MoreLetter() {
                 l’Histoire qu’on lui raconte
                 rarement.
             </h2>
-            <p>Le café, les chiffres,
-                l’algorithme...
-                des femmes et des hommes
-                qui ont changé le monde,
-                mais dont il n’entend jamais
-                parler.
+            <p>Des objets du quotidien, des savoirs oubliés, des inventions fascinantes…des femmes et des
+hommes qui ont changé le monde, mais dont il n’entend jamais parler.
             </p>
           </div>
         </div>
@@ -34,13 +30,9 @@ function MoreLetter() {
           <div className='more-letter-content-item-description'>
             <h2>Il lit sans qu’on lui
             demande.</h2>
-            <p>Une histoire qu’il lit par
-curiosité et qu’il termine par
-plaisir.
-Parce que l’enveloppe est
-arrivé à son nom.
-Et parce que cette fois, il
-veut savoir la suite.</p>
+            <p>Un histoire qu’il lit par curiosité et qu’il termine par plaisir. Parce que l’enveloppe est arrivée
+à son nom. Guidé par une devinette à résoudre à la fin de chaque lettre, il cherche les
+indices, imagine les réponses et attend la prochaine enveloppe avec impatience.</p>
           </div>
         </div>
 

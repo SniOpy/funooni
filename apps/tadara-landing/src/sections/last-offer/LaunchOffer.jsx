@@ -9,15 +9,16 @@ function LaunchOffer() {
       <LaunchOfferContentStyled>
         <h1>OFFREZ LUI UNE HISTOIRE QUI LUI APPARTIENT</h1>
 
-        <p>Il connait les dinosaures. Les Vikings. Les super-héros.</p>
+        <p>Il connaît les dinosaures. Les vikings. Les chevaliers. Les super-héros.</p>
         <p>Mais il ne sait pas encore...</p>
-        <p>Qu&apos;Al Khwarizmi a inventé l&apos;algorithme.</p>
-        <p>Que le café a été découvert et diffusé dans le monde par les Arabes.</p>
-        <p>Que le zéro a traversé Bagdad avant d&apos;arriver dans leur cahier.</p>
+        <p>Que certains objets de sa chambre ont traversé les siècles.</p>
+        <p>Que des femmes et des hommes d&#39;exception ont changé notre façon de calculer, de nous
+soigner ou de regarder les étoiles.</p>
+        <p>Que l&#39;Histoire est faite de ponts invisibles entre les époques et les civilisations.</p>
         <p>Cette histoire existe. Elle est vraie.</p>
-        <p>Et elle l&apos;attend dans sa boîte aux lettres.</p>
+        <p>Et elle l&#39;attend dans sa boîte aux lettres!</p>
 
-        <input type="text" placeholder="adresse@email.com" />
+        <input type="text" placeholder="votre@email.com" />
         <button>Je veux mon offre de lancement</button>
         <span>Gratuit.Sans engagement</span>
       </LaunchOfferContentStyled>
