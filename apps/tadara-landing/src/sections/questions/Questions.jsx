@@ -19,6 +19,11 @@ function Questions() {
             <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={500}/>
             <h2>Le tarif sera dévoilé lors du lancement. Les premières familles inscrites bénéficieront d’un tarif préférentiel.</h2>
         </QuestiosItemStyled>
+
+        <QuestiosItemStyled>
+            <img src="/images/questions/email.png" alt="Que se passe-t-il une fois qu’on laisse son email ?" width={500}/>
+            <h2>Vous rejoignez la liste d'attente. Nous enverrons un email pour vous donner l'accès prioritaire à l'ouverture des abonnements et auw coulisses du projet.</h2>
+        </QuestiosItemStyled>
       </QuestiosContentStyled>
     </QuestionsSectionStyled>
   )
@@ -55,6 +60,9 @@ const QuestionsTitleStyled = styled.div`
     }
     `
 const QuestiosContentStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing[12]};
   padding-left: ${spacing[24]};
 
   @media (max-width: ${tadaraTheme.breakpoints.laptop}) {

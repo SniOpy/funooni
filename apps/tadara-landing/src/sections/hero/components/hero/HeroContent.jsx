@@ -46,7 +46,7 @@ const HeroContentStyled = styled.div`
   }
 
   .hero-subtitle {
-    margin: 0;
+    margin: ${tadaraTheme.spacing[8]} 0 0;
     font-size: clamp(1.125rem, 2.1vw, 1.375rem);
     font-family: 'Montserrat';
     font-weight: 400;
@@ -67,7 +67,7 @@ const HeroContentStyled = styled.div`
     background-color: #717373;
     height: 1px;
     width: min(100%, 420px);
-    margin: 0 auto;
+    margin: ${tadaraTheme.spacing[8]} auto 0;
     border: 0;
   }
 
