@@ -1,9 +1,57 @@
+import { useState } from "react"
 import styled from "styled-components"
 import { tadaraTheme } from "../../designSystem"
+import { submitLead } from "../../services/leadsApi"
+import EmailSuccessModal from "../../components/EmailSuccessModal"
 
 const { colors, spacing, typography, radius } = tadaraTheme
 
 function LaunchOffer() {
+  const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
+  const [successOpen, setSuccessOpen] = useState(false)
+  const [successTitle, setSuccessTitle] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    setError("")
+
+    if (!email.trim()) {
+      setError("Merci d’indiquer votre adresse email.")
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const result = await submitLead({
+        email,
+        source: "launch-offer",
+      })
+
+      if (result.alreadyRegistered) {
+        setSuccessTitle("Vous êtes déjà inscrit")
+        setSuccessMessage(
+          "Vous recevrez bien les informations concernant le lancement de TADARA."
+        )
+      } else {
+        setSuccessTitle("Inscription confirmée !")
+        setSuccessMessage(
+          "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA"
+        )
+      }
+
+      setSuccessOpen(true)
+      setEmail("")
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <LaunchOfferSectionStyled>
       <LaunchOfferContentStyled>
@@ -18,8 +66,22 @@ soigner ou de regarder les étoiles.</p>
         <p><strong>Cette histoire existe. Elle est vraie.</strong></p>
         <p><strong>Et elle l&#39;attend dans sa boîte aux lettres!</strong></p>
 
-        <input type="text" placeholder="votre@email.com" />
-        <button>Je veux mon offre de lancement</button>
+        <LaunchOfferFormStyled onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            autoComplete="email"
+            placeholder="votre@email.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Envoi en cours..." : "Je veux mon offre de lancement"}
+          </button>
+          {error ? <p className="form-error">{error}</p> : null}
+        </LaunchOfferFormStyled>
       </LaunchOfferContentStyled>
 
       <LaunchOfferImageStyled>
@@ -30,6 +92,13 @@ soigner ou de regarder les étoiles.</p>
           height={450}
         />
       </LaunchOfferImageStyled>
+
+      <EmailSuccessModal
+        open={successOpen}
+        title={successTitle}
+        message={successMessage}
+        onClose={() => setSuccessOpen(false)}
+      />
     </LaunchOfferSectionStyled>
   )
 }
@@ -76,9 +145,24 @@ const LaunchOfferContentStyled = styled.div`
     max-width: 90%;
   }
 
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    width: 100%;
+
+    p {
+      max-width: 100%;
+    }
+  }
+`
+
+const LaunchOfferFormStyled = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing[3]};
+  margin-top: ${spacing[5]};
+  width: min(100%, 420px);
+
   input {
-    margin-top: ${spacing[5]};
-    width: min(100%, 420px);
+    width: 100%;
     height: 45px;
     border: 2px solid ${colors.border.medium};
     border-radius: ${radius.pill};
@@ -92,7 +176,7 @@ const LaunchOfferContentStyled = styled.div`
   }
 
   button {
-    width: min(100%, 420px);
+    width: 100%;
     border: 2px solid #ece6e6;
     border-radius: ${radius.pill};
     padding: ${spacing[4]} ${spacing[8]};
@@ -104,27 +188,22 @@ const LaunchOfferContentStyled = styled.div`
     cursor: pointer;
     transition: background-color ${tadaraTheme.motion.duration.normal} ${tadaraTheme.motion.easing.default};
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: ${colors.form.buttonHover};
     }
-  }
 
-  span {
-    width: min(100%, 420px);
-    text-align: center;
-    font-family: ${typography.fonts.body};
-    font-size: ${typography.sizes['2xl']};
-    font-weight: ${typography.weights.regular};
-    color: ${colors.text.primary};
-    line-height: ${typography.lineHeights.body};
-  }
-
-  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
-    width: 100%;
-
-    p {
-      max-width: 100%;
+    &:disabled {
+      opacity: 0.7;
+      cursor: wait;
     }
+  }
+
+  .form-error {
+    margin: 0;
+    color: #8b2e2e;
+    font-family: ${typography.fonts.body};
+    font-size: ${typography.sizes.sm};
+    text-align: center;
   }
 `
 

@@ -22,7 +22,7 @@ function Questions() {
 
         <QuestiosItemStyled>
             <img src="/images/questions/email.png" alt="Que se passe-t-il une fois qu’on laisse son email ?" width={500}/>
-            <h2>Vous rejoignez la liste d'attente. Nous enverrons un email pour vous donner l'accès prioritaire à l'ouverture des abonnements et auw coulisses du projet.</h2>
+            <h2>Vous rejoignez la liste d'attente. Nous enverrons un email pour vous donner l'accès prioritaire à l'ouverture des abonnements et aux coulisses du projet.</h2>
         </QuestiosItemStyled>
       </QuestiosContentStyled>
     </QuestionsSectionStyled>
