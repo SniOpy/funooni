@@ -95,8 +95,9 @@ const MoreLetterSectionStyled = styled.section`
         font-size: clamp(1.25rem, 2.2vw, 1.625rem);
         font-weight: 700;
         color: ${tadaraTheme.colors.text.primary};
-        margin: 0;
+        margin: ${spacing[4]} auto 0;
         line-height: 1.3;
+        text-align: center;
     }
 
     p {
@@ -105,7 +106,9 @@ const MoreLetterSectionStyled = styled.section`
         font-weight: 400;
         color: ${tadaraTheme.colors.text.secondary};
         line-height: 1.55;
-        margin: 0;
+        margin: 0 auto;
+        max-width: 85%;
+        text-align: center;
     }
 
     .more-letter-content-item-image {
