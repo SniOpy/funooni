@@ -1,7 +1,55 @@
+import { useState } from "react"
 import styled from "styled-components"
 import { tadaraTheme } from "../../../../designSystem"
+import { submitLead } from "../../../../services/leadsApi"
+import EmailSuccessModal from "../../../../components/EmailSuccessModal"
 
 function HeroContent() {
+  const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
+  const [successOpen, setSuccessOpen] = useState(false)
+  const [successTitle, setSuccessTitle] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    setError("")
+
+    if (!email.trim()) {
+      setError("Merci d’indiquer votre adresse email.")
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const result = await submitLead({
+        email,
+        source: "hero",
+      })
+
+      if (result.alreadyRegistered) {
+        setSuccessTitle("Vous êtes déjà inscrit")
+        setSuccessMessage(
+          "Vous recevrez bien les informations concernant le lancement de TADARA."
+        )
+      } else {
+        setSuccessTitle("Inscription confirmée !")
+        setSuccessMessage(
+          "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA"
+        )
+      }
+
+      setSuccessOpen(true)
+      setEmail("")
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <HeroContentStyled>
       <h1>Votre enfant utilise chaque jour un héritage de 1200 ans. <br/>Sans le savoir</h1>
@@ -21,14 +69,31 @@ function HeroContent() {
           d’une offre privilégiée lors de la prochaine
           ouverture des abonnements
         </h2>
-        <FormContentStyled>
-          <input type="email" placeholder="votre@email.com" />
-          <button type="submit">Je veux être informé du lancement</button>
+        <FormContentStyled onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            autoComplete="email"
+            placeholder="votre@email.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Envoi en cours..." : "Je veux être informé du lancement"}
+          </button>
+          {error ? <p className="form-error">{error}</p> : null}
         </FormContentStyled>
       </div>
-    </HeroContentStyled>
 
-    
+      <EmailSuccessModal
+        open={successOpen}
+        title={successTitle}
+        message={successMessage}
+        onClose={() => setSuccessOpen(false)}
+      />
+    </HeroContentStyled>
   )
 }
 
@@ -141,10 +206,21 @@ const FormContentStyled = styled.form`
     font-size: ${tadaraTheme.typography.sizes.base};
     transition: background-color ${tadaraTheme.motion.duration.normal} ${tadaraTheme.motion.easing.default};
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: ${tadaraTheme.colors.form.buttonHover};
     }
 
+    &:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+  }
+
+  .form-error {
+    margin: ${tadaraTheme.spacing[1]} 0 0;
+    color: #8b2e2e;
+    font-size: ${tadaraTheme.typography.sizes.sm};
+    text-align: center;
   }
 
 `
