@@ -7,8 +7,8 @@ function HeroInner() {
   return (
     <HeroInnerStyled>
       <div className="logo">
-        <img src="/images/hero/tadara.png" alt="logo1" width={180} height={80}/>
-        <img src="/images/hero/timbre.png" alt="logo2" width={200} height={100}/>
+        <img src="/images/hero/tadara.png" alt="logo tadara" width={250} height={150}/>
+        <img src="/images/hero/timbre.png" alt="image timbre à l'ancienne" width={200} height={100}/>
       </div>
       <HeroContent/>
     </HeroInnerStyled>

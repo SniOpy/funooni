@@ -14,10 +14,10 @@ function Questions() {
             <img src="/images/questions/engagement-financier.png" alt="image engagement financier" width={500}/>
             <h2>Non l'inscription est entièrement gratuite <br/>et sans engagement</h2>
         </QuestiosItemStyled>
+
         <QuestiosItemStyled>
             <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={500}/>
-            <h2>Le tarif sera dévoilé lors du lancement. Les premières familles inscrites bénéficieront d’un
-tarif préférentiel.</h2>
+            <h2>Le tarif sera dévoilé lors du lancement. Les premières familles inscrites bénéficieront d’un tarif préférentiel.</h2>
         </QuestiosItemStyled>
       </QuestiosContentStyled>
     </QuestionsSectionStyled>
