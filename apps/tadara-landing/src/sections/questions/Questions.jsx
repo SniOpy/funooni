@@ -11,17 +11,23 @@ function Questions() {
 
       <QuestiosContentStyled>
         <QuestiosItemStyled>
-            <img src="/images/questions/engagement-financier.png" alt="image engagement financier" width={500}/>
+            <div className="question-image">
+              <img src="/images/questions/engagement-financier.png" alt="image engagement financier" width={500} height={360} />
+            </div>
             <h2>Non l'inscription est entièrement gratuite <br/>et sans engagement</h2>
         </QuestiosItemStyled>
 
         <QuestiosItemStyled>
-            <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={500}/>
+            <div className="question-image">
+              <img src="/images/questions/abonnement.png" alt="image prix abonnement" width={500} height={360} />
+            </div>
             <h2>Le tarif sera dévoilé lors du lancement. Les premières familles inscrites bénéficieront d’un tarif préférentiel.</h2>
         </QuestiosItemStyled>
 
         <QuestiosItemStyled>
-            <img src="/images/questions/email.png" alt="Que se passe-t-il une fois qu’on laisse son email ?" width={500}/>
+            <div className="question-image">
+              <img src="/images/questions/email.png" alt="Que se passe-t-il une fois qu’on laisse son email ?" width={500} height={360} />
+            </div>
             <h2>Vous rejoignez la liste d'attente. Nous enverrons un email pour vous donner l'accès prioritaire à l'ouverture des abonnements et aux coulisses du projet.</h2>
         </QuestiosItemStyled>
       </QuestiosContentStyled>
@@ -74,32 +80,49 @@ const QuestiosItemStyled = styled.div`
   align-items: center;
   gap: ${spacing[20]};
 
-  img {
-    width: min(100%, 500px);
-    height: auto;
+  .question-image {
+    flex: 0 0 min(100%, 480px);
+    width: min(100%, 480px);
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
   }
 
-  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  h2 {
+    flex: 1;
+    padding: ${spacing[1]} ${spacing[10]};
+    margin: 0;
+    font-size: clamp(1.25rem, 2.6vw, ${tadaraTheme.typography.sizes['3xl']});
+    font-weight: ${tadaraTheme.typography.weights.regular};
+    color: ${tadaraTheme.colors.text.primary};
+    font-family: ${tadaraTheme.typography.fonts.body};
+    line-height: ${tadaraTheme.typography.lineHeights.body};
+  }
+
+  @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: ${spacing[5]};
+
+    .question-image {
+      flex-basis: auto;
+      width: min(100%, 420px);
+      margin-inline: auto;
+    }
+
     h2 {
-      padding: ${spacing[1]} ${spacing[10]};
-      margin: 0;
-      font-size: clamp(1.25rem, 2.6vw, ${tadaraTheme.typography.sizes['3xl']});
-      font-weight: ${tadaraTheme.typography.weights.regular};
-      color: ${tadaraTheme.colors.text.primary};
-      font-family: ${tadaraTheme.typography.fonts.body};
-      line-height: ${tadaraTheme.typography.lineHeights.body};
+      padding: 0;
+      text-align: center;
     }
-
-    @media (max-width: ${tadaraTheme.breakpoints.laptop}) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: ${spacing[5]};
-
-      h2 {
-        padding: 0;
-      }
-    }
- `
+  }
+`
 
 
 export default Questions
