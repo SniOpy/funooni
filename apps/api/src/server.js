@@ -3,7 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const { createLead, findLeadByEmail } = require("./db");
-const { sendConfirmationEmail } = require("./mailer");
+const { notifyNewLead } = require("./mailer");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +14,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://tadara.funooni.fr",
   "https://funooni.fr",
+  "https://funooni.vercel.app",
 ];
 
 app.use(
@@ -54,7 +55,9 @@ app.post("/api/leads", async (req, res) => {
     return res.status(200).json({
       success: true,
       alreadyRegistered: true,
-      message: "Vous êtes déjà inscrit. Vous recevrez bien les informations concernant le lancement de TADARA.",
+      emailSent: false,
+      message:
+        "Vous êtes déjà inscrit. Vous recevrez bien les informations concernant le lancement de TADARA.",
     });
   }
 
@@ -67,11 +70,14 @@ app.post("/api/leads", async (req, res) => {
     let emailSent = false;
 
     try {
-      const mailResult = await sendConfirmationEmail(lead.email);
-      emailSent = Boolean(mailResult.sent);
+      const mailResult = await notifyNewLead({
+        email: lead.email,
+        source: typeof source === "string" ? source : lead.source,
+      });
+      emailSent = Boolean(mailResult.emailSent);
     } catch (mailError) {
       console.error(
-        "Erreur lors de l'envoi de l'email de confirmation :",
+        "Erreur lors de l'envoi de l'email :",
         mailError
       );
     }
