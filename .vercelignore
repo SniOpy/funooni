@@ -1,0 +1,11 @@
+.env
+.env.local
+.env.production
+.env.development
+**/.env
+**/.env.local
+apps/api/data
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
