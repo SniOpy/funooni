@@ -12,11 +12,11 @@ function WhyStart() {
         <WhyStartContentItemStyled>
           <img src="/images/whystart/why-start.jpg" alt="why-start-1" width={800} height={600}/>
           <ul>
-            <li>Parce qu'ils cherchent une alternative aux écrans</li>
+            <li>Parce qu'ils cherchent une alternative aux écrans.</li>
             <li>Parce qu'ils veulent nourrir la curiosité de leur enfant.</li>
             <li>Parce qu'ils aiment les beaux objets.</li>
             <li>Parce qu'ils cherchent une manière simple de
-            transmettre</li>
+            transmettre.</li>
             <li>Parce qu'ils savent que certaines histoires méritent
             d'être racontées.</li>
           </ul>

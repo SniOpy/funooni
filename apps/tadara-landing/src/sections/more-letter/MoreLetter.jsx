@@ -64,12 +64,12 @@ const MoreLetterSectionStyled = styled.section`
 
 
   .moreletter-title {
-    font-size: ${typography.sizes['4xl']};
+    font-size: clamp(2rem, 4.6vw, 3.25rem);
     text-transform: uppercase;
     font-weight: ${typography.weights.bold};
     color: ${colors.text.primary};
     font-family: ${typography.fonts.heading};
-    line-height: ${typography.lineHeights.heading};
+    line-height: 1.1;
     margin: 0;
   }
 
