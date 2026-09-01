@@ -14,7 +14,7 @@ function Questions() {
             <div className="question-image">
               <img src="/images/questions/engagement-financier.png" alt="image engagement financier" width={500} height={360} />
             </div>
-            <h2>Non l'inscription est entièrement gratuite <br/>et sans engagement</h2>
+            <h2>Non l'inscription est entièrement gratuite <br/>et sans engagement.</h2>
         </QuestiosItemStyled>
 
         <QuestiosItemStyled>
