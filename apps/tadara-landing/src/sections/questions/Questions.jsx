@@ -6,7 +6,7 @@ function Questions() {
   return (
     <QuestionsSectionStyled>
       <QuestionsTitleStyled>
-        <h1>Des questions ? on vous répond !</h1>
+        <h1>Des questions ? <br className="questions-title-break" />on vous répond !</h1>
       </QuestionsTitleStyled>
 
       <QuestiosContentStyled>
@@ -63,6 +63,16 @@ const QuestionsTitleStyled = styled.div`
     h1 {
       margin: 0;
       font-size: clamp(2rem, 4.6vw, 3.25rem);
+    }
+
+    .questions-title-break {
+      display: none;
+    }
+
+    @media (max-width: ${tadaraTheme.breakpoints.tablet}) {
+      .questions-title-break {
+        display: block;
+      }
     }
     `
 const QuestiosContentStyled = styled.div`

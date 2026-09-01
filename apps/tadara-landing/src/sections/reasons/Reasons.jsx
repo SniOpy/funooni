@@ -12,16 +12,16 @@ function Reasons() {
       <ReasonsContentStyled>
         <ReasonsBulletsStyled>
           <ul className="reasons-bullet-list">
-            <li>Celui qui pose mille questions</li>
+            <li>Celui qui pose mille questions.</li>
             <li>
               Celui dont les parents veulent lui ouvrir les yeux
               sur une civilisation qui a changé le monde et
-              qu'on raconte encore trop peu
+              qu'on raconte encore trop peu.
             </li>
-            <li>Celui dont les parents veulent transmettre</li>
-            <li>Celui qui boude la lecture</li>
-            <li>Celui qui passe trop de temps sur les écrans</li>
-            <li>Celui qui aime collectionner</li>
+            <li>Celui dont les parents veulent transmettre.</li>
+            <li>Celui qui boude la lecture.</li>
+            <li>Celui qui passe trop de temps sur les écrans.</li>
+            <li>Celui qui aime collectionner.</li>
           </ul>
         </ReasonsBulletsStyled>
         <ReasonsImageStyled>
@@ -40,12 +40,12 @@ const ReasonsSectionStyled = styled.section`
   background-color: ${colors.background.cream};
 
   .reasons-title {
-    font-size: ${typography.sizes['4xl']};
+    font-size: clamp(2rem, 4.6vw, 3.25rem);
     text-transform: uppercase;
     font-weight: ${typography.weights.bold};
     color: ${colors.text.primary};
     font-family: ${typography.fonts.heading};
-    line-height: ${typography.lineHeights.heading};
+    line-height: 1.1;
     margin: 0;
   }
 
