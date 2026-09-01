@@ -7,7 +7,7 @@ function HeroInner() {
   return (
     <HeroInnerStyled>
       <div className="logo">
-        <img src="/images/hero/tadara.png" alt="logo tadara" width={320} height={192}/>
+        <img src="/images/hero/tadara.png" alt="logo tadara" width={300} height={192}/>
         <img src="/images/hero/timbre.png" alt="image timbre à l'ancienne" width={200} height={100}/>
       </div>
       <HeroContent/>
@@ -23,6 +23,7 @@ const HeroInnerStyled = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: ${tadaraTheme.spacing[4]};
+    margin-bottom: 4rem;
 
     img:first-child {
       width: clamp(168px, 26vw, 280px);
