@@ -6,11 +6,8 @@ if (!process.env.VERCEL) {
   });
 }
 
-const {
-  isSmtpConfigured,
-  notifyNewLead,
-} = require("../apps/api/src/mailer");
-const { addLead } = require("../apps/api/src/leadsStore");
+const { notifyNewLead } = require("../apps/api/src/mailer");
+const { createRegistration } = require("../apps/api/src/createRegistration");
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -45,38 +42,38 @@ module.exports = async (req, res) => {
 
   const normalizedEmail = email.trim().toLowerCase();
 
-  if (!addLead(normalizedEmail)) {
-    return res.status(200).json({
-      success: true,
-      alreadyRegistered: true,
-      emailSent: false,
-      message:
-        "Vous êtes déjà inscrit. Vous recevrez bien les informations concernant le lancement de TADARA.",
-    });
-  }
-
-  if (!isSmtpConfigured()) {
-    return res.status(500).json({
-      success: false,
-      message: "L'envoi d'email n'est pas encore configuré.",
-    });
-  }
-
   try {
-    const mailResult = await notifyNewLead({
-      email: normalizedEmail,
-      source: typeof source === "string" ? source : null,
-    });
-    const emailSent = Boolean(mailResult.emailSent);
+    const registrationResult = await createRegistration(normalizedEmail);
+
+    if (registrationResult.isEmailAlreadyRegistered) {
+      return res.status(200).json({
+        success: true,
+        alreadyRegistered: true,
+        emailSent: false,
+        message: "Cette adresse email est déjà inscrite.",
+      });
+    }
+
+    let emailSent = false;
+
+    try {
+      const mailResult = await notifyNewLead({
+        email: normalizedEmail,
+        source: typeof source === "string" ? source : null,
+      });
+      emailSent = Boolean(mailResult.emailSent);
+    } catch (mailError) {
+      console.error("Erreur lors de l'envoi de l'email :", mailError);
+    }
 
     return res.status(201).json({
       success: true,
       alreadyRegistered: false,
       emailSent,
-      message:
-        "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA.",
+      message: "Merci, votre inscription a bien été prise en compte.",
       lead: {
-        email: normalizedEmail,
+        id: registrationResult.registration.id,
+        email: registrationResult.registration.email,
       },
     });
   } catch (error) {

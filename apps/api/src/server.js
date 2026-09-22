@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const { createLead, findLeadByEmail } = require("./db");
 const { notifyNewLead } = require("./mailer");
+const { createRegistration } = require("./createRegistration");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,47 +49,39 @@ app.post("/api/leads", async (req, res) => {
   }
 
   const normalizedEmail = email.trim().toLowerCase();
-  const existing = findLeadByEmail(normalizedEmail);
-
-  if (existing) {
-    return res.status(200).json({
-      success: true,
-      alreadyRegistered: true,
-      emailSent: false,
-      message:
-        "Vous êtes déjà inscrit. Vous recevrez bien les informations concernant le lancement de TADARA.",
-    });
-  }
 
   try {
-    const lead = createLead({
-      email: normalizedEmail,
-      source: typeof source === "string" ? source : null,
-    });
+    const registrationResult = await createRegistration(normalizedEmail);
+
+    if (registrationResult.isEmailAlreadyRegistered) {
+      return res.status(200).json({
+        success: true,
+        alreadyRegistered: true,
+        emailSent: false,
+        message: "Cette adresse email est déjà inscrite.",
+      });
+    }
 
     let emailSent = false;
 
     try {
       const mailResult = await notifyNewLead({
-        email: lead.email,
-        source: typeof source === "string" ? source : lead.source,
+        email: normalizedEmail,
+        source: typeof source === "string" ? source : null,
       });
       emailSent = Boolean(mailResult.emailSent);
     } catch (mailError) {
-      console.error(
-        "Erreur lors de l'envoi de l'email :",
-        mailError
-      );
+      console.error("Erreur lors de l'envoi de l'email :", mailError);
     }
 
     return res.status(201).json({
       success: true,
       alreadyRegistered: false,
       emailSent,
-      message: "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA.",
+      message: "Merci, votre inscription a bien été prise en compte.",
       lead: {
-        id: lead.id,
-        email: lead.email,
+        id: registrationResult.registration.id,
+        email: registrationResult.registration.email,
       },
     });
   } catch (error) {
