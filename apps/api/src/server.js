@@ -60,7 +60,10 @@ app.post("/api/leads", async (req, res) => {
   const normalizedEmail = email.trim().toLowerCase();
 
   try {
-    const registrationResult = await createRegistration(normalizedEmail);
+    const registrationResult = await createRegistration(
+      normalizedEmail,
+      typeof source === "string" ? source : null
+    );
 
     if (registrationResult.isEmailAlreadyRegistered) {
       return res.status(200).json({
