@@ -49,6 +49,8 @@ export const StatCard = styled.div`
   border-radius: 18px;
   padding: 18px 20px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  cursor: ${(props) => (props.$clickable ? "pointer" : "default")};
+  outline: ${(props) => (props.$active ? "2px solid #4F46E5" : "none")};
 
   .label {
     color: #64748b;
@@ -103,16 +105,19 @@ export const Toolbar = styled.div`
   flex-wrap: wrap;
 
   input,
+  select,
   button {
     height: 40px;
     border-radius: 12px;
     font-family: inherit;
   }
 
-  input {
+  input,
+  select {
     border: 1px solid #e2e8f0;
     padding: 0 12px;
     min-width: 200px;
+    background: white;
   }
 
   button {
@@ -220,6 +225,32 @@ export const Badge = styled.span`
   font-weight: 700;
   background: #ecfdf5;
   color: #047857;
+`
+
+export const SourceBadge = styled.span`
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: ${(props) =>
+    props.$source === "launch-offer" ? "#EEF2FF" : props.$source === "hero" ? "#ECFEFF" : "#F1F5F9"};
+  color: ${(props) =>
+    props.$source === "launch-offer" ? "#4338CA" : props.$source === "hero" ? "#0E7490" : "#64748B"};
+`
+
+export const SourceCountBar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+  padding: 12px 4px 0;
+  color: #334155;
+  font-size: 0.95rem;
+
+  strong {
+    font-size: 1.05rem;
+  }
 `
 
 export const Pagination = styled.div`
