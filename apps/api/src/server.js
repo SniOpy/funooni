@@ -2,8 +2,17 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const { createLead, findLeadByEmail } = require("./db");
 const { notifyNewLead } = require("./mailer");
+const { createRegistration } = require("./createRegistration");
+const { listRegistrations } = require("./listRegistrations");
+const {
+  listSpecialMembers,
+  createSpecialMembers,
+} = require("./specialMembers");
+const {
+  isValidAdminPassword,
+  getAdminPasswordFromRequest,
+} = require("./adminAuth");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +30,7 @@ app.use(
   cors({
     origin: allowedOrigins,
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type", "x-admin-password"],
   })
 );
 
@@ -49,47 +58,39 @@ app.post("/api/leads", async (req, res) => {
   }
 
   const normalizedEmail = email.trim().toLowerCase();
-  const existing = findLeadByEmail(normalizedEmail);
-
-  if (existing) {
-    return res.status(200).json({
-      success: true,
-      alreadyRegistered: true,
-      emailSent: false,
-      message:
-        "Vous êtes déjà inscrit. Vous recevrez bien les informations concernant le lancement de TADARA.",
-    });
-  }
 
   try {
-    const lead = createLead({
-      email: normalizedEmail,
-      source: typeof source === "string" ? source : null,
-    });
+    const registrationResult = await createRegistration(normalizedEmail);
+
+    if (registrationResult.isEmailAlreadyRegistered) {
+      return res.status(200).json({
+        success: true,
+        alreadyRegistered: true,
+        emailSent: false,
+        message: "Cette adresse email est déjà inscrite.",
+      });
+    }
 
     let emailSent = false;
 
     try {
       const mailResult = await notifyNewLead({
-        email: lead.email,
-        source: typeof source === "string" ? source : lead.source,
+        email: normalizedEmail,
+        source: typeof source === "string" ? source : null,
       });
       emailSent = Boolean(mailResult.emailSent);
     } catch (mailError) {
-      console.error(
-        "Erreur lors de l'envoi de l'email :",
-        mailError
-      );
+      console.error("Erreur lors de l'envoi de l'email :", mailError);
     }
 
     return res.status(201).json({
       success: true,
       alreadyRegistered: false,
       emailSent,
-      message: "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA.",
+      message: "Merci, votre inscription a bien été prise en compte.",
       lead: {
-        id: lead.id,
-        email: lead.email,
+        id: registrationResult.registration.id,
+        email: registrationResult.registration.email,
       },
     });
   } catch (error) {
@@ -98,6 +99,114 @@ app.post("/api/leads", async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Une erreur est survenue. Merci de réessayer.",
+    });
+  }
+});
+
+app.get("/api/registrations", async (req, res) => {
+  const adminPassword = getAdminPasswordFromRequest(req);
+
+  if (!process.env.ADMIN_DASHBOARD_PASSWORD) {
+    return res.status(503).json({
+      success: false,
+      message: "Le dashboard admin n'est pas encore configuré.",
+    });
+  }
+
+  if (!isValidAdminPassword(adminPassword)) {
+    return res.status(401).json({
+      success: false,
+      message: "Mot de passe incorrect.",
+    });
+  }
+
+  try {
+    const { registrations, stats } = await listRegistrations();
+
+    return res.status(200).json({
+      success: true,
+      registrations,
+      stats,
+    });
+  } catch (error) {
+    console.error("Erreur lors de la lecture des inscriptions :", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible de charger les inscriptions.",
+    });
+  }
+});
+
+app.get("/api/special-members", async (req, res) => {
+  const adminPassword = getAdminPasswordFromRequest(req);
+
+  if (!process.env.ADMIN_DASHBOARD_PASSWORD) {
+    return res.status(503).json({
+      success: false,
+      message: "Le dashboard admin n'est pas encore configuré.",
+    });
+  }
+
+  if (!isValidAdminPassword(adminPassword)) {
+    return res.status(401).json({
+      success: false,
+      message: "Mot de passe incorrect.",
+    });
+  }
+
+  try {
+    const { specialMembers, stats } = await listSpecialMembers();
+
+    return res.status(200).json({
+      success: true,
+      specialMembers,
+      stats,
+    });
+  } catch (error) {
+    console.error("Erreur lors de la lecture du groupe spécial :", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible de charger le groupe spécial.",
+    });
+  }
+});
+
+app.post("/api/special-members", async (req, res) => {
+  const adminPassword = getAdminPasswordFromRequest(req);
+
+  if (!process.env.ADMIN_DASHBOARD_PASSWORD) {
+    return res.status(503).json({
+      success: false,
+      message: "Le dashboard admin n'est pas encore configuré.",
+    });
+  }
+
+  if (!isValidAdminPassword(adminPassword)) {
+    return res.status(401).json({
+      success: false,
+      message: "Mot de passe incorrect.",
+    });
+  }
+
+  try {
+    const createResult = await createSpecialMembers({
+      emailsText: req.body?.emailsText,
+      fullName: req.body?.fullName,
+      phone: req.body?.phone,
+    });
+
+    return res.status(201).json({
+      success: true,
+      ...createResult,
+    });
+  } catch (error) {
+    console.error("Erreur lors de l'ajout au groupe spécial :", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible d'ajouter les emails.",
     });
   }
 });
