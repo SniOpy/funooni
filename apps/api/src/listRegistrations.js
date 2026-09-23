@@ -37,33 +37,57 @@ function getParisMondayYmd(now) {
   return shiftParisYmd(todayYmd, -(daysSinceMonday || 0));
 }
 
+function countInRange(countByDay, startYmd, endYmd) {
+  let total = 0;
+  for (const [dayYmd, count] of Object.entries(countByDay)) {
+    if (dayYmd >= startYmd && dayYmd <= endYmd) {
+      total += count;
+    }
+  }
+  return total;
+}
+
+function percentChange(currentCount, previousCount) {
+  if (previousCount === 0) {
+    return currentCount === 0 ? 0 : 100;
+  }
+  return Math.round(((currentCount - previousCount) / previousCount) * 100);
+}
+
 function buildRegistrationStats(registrations, now = new Date()) {
   const todayYmd = formatParisYmd(now);
+  const yesterdayYmd = shiftParisYmd(todayYmd, -1);
   const thisMonthPrefix = todayYmd.slice(0, 7);
+  const lastMonthPrefix = shiftParisYmd(todayYmd, -32).slice(0, 7);
   const mondayYmd = getParisMondayYmd(now);
+  const previousMondayYmd = shiftParisYmd(mondayYmd, -7);
+  const previousSundayYmd = shiftParisYmd(mondayYmd, -1);
 
   let todayCount = 0;
+  let yesterdayCount = 0;
   let thisWeekCount = 0;
   let thisMonthCount = 0;
+  let lastMonthCount = 0;
   const countByDay = {};
 
   for (const registration of registrations) {
     const registrationYmd = formatParisYmd(new Date(registration.created_at));
+    countByDay[registrationYmd] = (countByDay[registrationYmd] || 0) + 1;
 
-    if (registrationYmd === todayYmd) {
-      todayCount += 1;
-    }
-
+    if (registrationYmd === todayYmd) todayCount += 1;
+    if (registrationYmd === yesterdayYmd) yesterdayCount += 1;
     if (registrationYmd >= mondayYmd && registrationYmd <= todayYmd) {
       thisWeekCount += 1;
     }
-
-    if (registrationYmd.startsWith(thisMonthPrefix)) {
-      thisMonthCount += 1;
-    }
-
-    countByDay[registrationYmd] = (countByDay[registrationYmd] || 0) + 1;
+    if (registrationYmd.startsWith(thisMonthPrefix)) thisMonthCount += 1;
+    if (registrationYmd.startsWith(lastMonthPrefix)) lastMonthCount += 1;
   }
+
+  const previousWeekCount = countInRange(
+    countByDay,
+    previousMondayYmd,
+    previousSundayYmd
+  );
 
   const last30Days = [];
   for (let dayOffset = 29; dayOffset >= 0; dayOffset -= 1) {
@@ -80,6 +104,9 @@ function buildRegistrationStats(registrations, now = new Date()) {
     thisWeekCount,
     thisMonthCount,
     last30Days,
+    todayChangePercent: percentChange(todayCount, yesterdayCount),
+    weekChangePercent: percentChange(thisWeekCount, previousWeekCount),
+    monthChangePercent: percentChange(thisMonthCount, lastMonthCount),
   };
 }
 

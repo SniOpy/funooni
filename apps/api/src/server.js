@@ -6,6 +6,10 @@ const { notifyNewLead } = require("./mailer");
 const { createRegistration } = require("./createRegistration");
 const { listRegistrations } = require("./listRegistrations");
 const {
+  listSpecialMembers,
+  createSpecialMembers,
+} = require("./specialMembers");
+const {
   isValidAdminPassword,
   getAdminPasswordFromRequest,
 } = require("./adminAuth");
@@ -130,6 +134,79 @@ app.get("/api/registrations", async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Impossible de charger les inscriptions.",
+    });
+  }
+});
+
+app.get("/api/special-members", async (req, res) => {
+  const adminPassword = getAdminPasswordFromRequest(req);
+
+  if (!process.env.ADMIN_DASHBOARD_PASSWORD) {
+    return res.status(503).json({
+      success: false,
+      message: "Le dashboard admin n'est pas encore configuré.",
+    });
+  }
+
+  if (!isValidAdminPassword(adminPassword)) {
+    return res.status(401).json({
+      success: false,
+      message: "Mot de passe incorrect.",
+    });
+  }
+
+  try {
+    const { specialMembers, stats } = await listSpecialMembers();
+
+    return res.status(200).json({
+      success: true,
+      specialMembers,
+      stats,
+    });
+  } catch (error) {
+    console.error("Erreur lors de la lecture du groupe spécial :", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible de charger le groupe spécial.",
+    });
+  }
+});
+
+app.post("/api/special-members", async (req, res) => {
+  const adminPassword = getAdminPasswordFromRequest(req);
+
+  if (!process.env.ADMIN_DASHBOARD_PASSWORD) {
+    return res.status(503).json({
+      success: false,
+      message: "Le dashboard admin n'est pas encore configuré.",
+    });
+  }
+
+  if (!isValidAdminPassword(adminPassword)) {
+    return res.status(401).json({
+      success: false,
+      message: "Mot de passe incorrect.",
+    });
+  }
+
+  try {
+    const createResult = await createSpecialMembers({
+      emailsText: req.body?.emailsText,
+      fullName: req.body?.fullName,
+      phone: req.body?.phone,
+    });
+
+    return res.status(201).json({
+      success: true,
+      ...createResult,
+    });
+  } catch (error) {
+    console.error("Erreur lors de l'ajout au groupe spécial :", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible d'ajouter les emails.",
     });
   }
 });
