@@ -7,7 +7,7 @@ const { colors, typography, spacing, radius, motion } = tadaraTheme
 function EmailSuccessModal({
   open,
   title = "Inscription confirmée !",
-  message = "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA",
+  message = "Merci, votre inscription a bien été prise en compte.",
   onClose,
 }) {
   useEffect(() => {

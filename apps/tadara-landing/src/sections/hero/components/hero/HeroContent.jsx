@@ -30,14 +30,14 @@ function HeroContent() {
       })
 
       if (result.alreadyRegistered) {
-        setSuccessTitle("Vous êtes déjà inscrit")
+        setSuccessTitle("Cette adresse email est déjà inscrite.")
         setSuccessMessage(
           "Vous recevrez bien les informations concernant le lancement de TADARA."
         )
       } else {
         setSuccessTitle("Inscription confirmée !")
         setSuccessMessage(
-          "Vous serez informé en priorité de l'ouverture de l'abonnement TADARA"
+          "Merci, votre inscription a bien été prise en compte."
         )
       }
 
