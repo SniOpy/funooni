@@ -37,6 +37,9 @@ function AdminApp() {
     todayChangePercent: 0,
     weekChangePercent: 0,
     monthChangePercent: 0,
+    heroCount: 0,
+    launchOfferCount: 0,
+    unknownSourceCount: 0,
   }
   const [registrationStats, setRegistrationStats] = useState(emptyStats)
   const [specialStats, setSpecialStats] = useState(emptyStats)

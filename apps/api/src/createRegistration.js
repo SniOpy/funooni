@@ -20,13 +20,15 @@ function getSupabaseClient() {
   });
 }
 
-async function createRegistration(normalizedEmail) {
+async function createRegistration(normalizedEmail, source) {
   const supabaseClient = getSupabaseClient();
+  const registrationSource =
+    typeof source === "string" && source.trim() ? source.trim() : null;
 
   const { data: registration, error } = await supabaseClient
     .from("registrations")
-    .insert({ email: normalizedEmail })
-    .select("id, email, created_at")
+    .insert({ email: normalizedEmail, source: registrationSource })
+    .select("id, email, source, created_at")
     .single();
 
   if (error?.code === POSTGRES_UNIQUE_VIOLATION) {
