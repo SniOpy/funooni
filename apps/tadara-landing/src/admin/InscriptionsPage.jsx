@@ -15,6 +15,8 @@ import {
   Panel,
   PanelHeader,
   Person,
+  SourceBadge,
+  SourceCountBar,
   StatCard,
   StatsGrid,
   TableWrap,
@@ -31,16 +33,25 @@ function InscriptionsPage({
   onRefresh,
 }) {
   const [tableSearch, setTableSearch] = useState("")
+  const [sourceFilter, setSourceFilter] = useState("all")
   const [pageIndex, setPageIndex] = useState(0)
 
   const filteredRegistrations = useMemo(() => {
     const query = `${headerSearch} ${tableSearch}`.trim().toLowerCase()
-    if (!query) return registrations
     return registrations.filter((registration) => {
+      const matchesSource =
+        sourceFilter === "all" || registration.source === sourceFilter
+      if (!matchesSource) return false
+      if (!query) return true
       const name = displayNameFromEmail(registration.email).toLowerCase()
-      return registration.email.includes(query) || name.includes(query)
+      const source = String(registration.source || "").toLowerCase()
+      return (
+        registration.email.includes(query) ||
+        name.includes(query) ||
+        source.includes(query)
+      )
     })
-  }, [registrations, headerSearch, tableSearch])
+  }, [registrations, headerSearch, tableSearch, sourceFilter])
 
   const pageCount = Math.max(1, Math.ceil(filteredRegistrations.length / PAGE_SIZE))
   const currentPage = Math.min(pageIndex, pageCount - 1)
@@ -48,6 +59,20 @@ function InscriptionsPage({
     currentPage * PAGE_SIZE,
     currentPage * PAGE_SIZE + PAGE_SIZE
   )
+
+  const heroCount =
+    stats.heroCount ??
+    registrations.filter((registration) => registration.source === "hero").length
+  const launchOfferCount =
+    stats.launchOfferCount ??
+    registrations.filter((registration) => registration.source === "launch-offer")
+      .length
+  const unknownSourceCount =
+    stats.unknownSourceCount ??
+    registrations.filter(
+      (registration) =>
+        registration.source !== "hero" && registration.source !== "launch-offer"
+    ).length
 
   return (
     <>
@@ -121,6 +146,17 @@ function InscriptionsPage({
                 setPageIndex(0)
               }}
             />
+            <select
+              value={sourceFilter}
+              onChange={(event) => {
+                setSourceFilter(event.target.value)
+                setPageIndex(0)
+              }}
+            >
+              <option value="all">Toutes les sources</option>
+              <option value="hero">hero</option>
+              <option value="launch-offer">launch-offer</option>
+            </select>
             <button type="button" className="ghost" onClick={onRefresh}>
               Actualiser
             </button>
@@ -129,10 +165,10 @@ function InscriptionsPage({
               onClick={() =>
                 downloadCsv(
                   "tadara-inscriptions.csv",
-                  "email,date_inscription",
+                  "email,source,date_inscription",
                   filteredRegistrations.map(
                     (registration) =>
-                      `"${registration.email}",${registration.created_at}`
+                      `"${registration.email}","${registration.source || ""}",${registration.created_at}`
                   )
                 )
               }
@@ -148,6 +184,7 @@ function InscriptionsPage({
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Email</th>
+                <th>Source</th>
                 <th>Date d'inscription</th>
                 <th>Statut</th>
               </tr>
@@ -155,7 +192,7 @@ function InscriptionsPage({
             <tbody>
               {pageRows.length === 0 ? (
                 <tr>
-                  <td colSpan={5}>Aucune inscription pour cette recherche.</td>
+                  <td colSpan={6}>Aucune inscription pour cette recherche.</td>
                 </tr>
               ) : (
                 pageRows.map((registration, index) => {
@@ -180,6 +217,11 @@ function InscriptionsPage({
                         </Person>
                       </td>
                       <td>{registration.email}</td>
+                      <td>
+                        <SourceBadge $source={registration.source}>
+                          {registration.source || "—"}
+                        </SourceBadge>
+                      </td>
                       <td>{formatParisDateTime(registration.created_at)}</td>
                       <td>
                         <Badge>Inscrit</Badge>
@@ -191,6 +233,28 @@ function InscriptionsPage({
             </tbody>
           </table>
         </TableWrap>
+        <SourceCountBar>
+          {sourceFilter === "all" ? (
+            <>
+              <span>
+                <strong>{heroCount}</strong> inscrits via hero
+              </span>
+              <span>
+                <strong>{launchOfferCount}</strong> inscrits via launch-offer
+              </span>
+              {unknownSourceCount > 0 ? (
+                <span>
+                  <strong>{unknownSourceCount}</strong> sans source
+                </span>
+              ) : null}
+            </>
+          ) : (
+            <span>
+              <strong>{filteredRegistrations.length}</strong> inscrit
+              {filteredRegistrations.length > 1 ? "s" : ""} via {sourceFilter}
+            </span>
+          )}
+        </SourceCountBar>
         <Pagination>
           <span>
             Affichage de {filteredRegistrations.length === 0 ? 0 : currentPage * PAGE_SIZE + 1} à{" "}

@@ -68,6 +68,9 @@ function buildRegistrationStats(registrations, now = new Date()) {
   let thisWeekCount = 0;
   let thisMonthCount = 0;
   let lastMonthCount = 0;
+  let heroCount = 0;
+  let launchOfferCount = 0;
+  let unknownSourceCount = 0;
   const countByDay = {};
 
   for (const registration of registrations) {
@@ -81,6 +84,14 @@ function buildRegistrationStats(registrations, now = new Date()) {
     }
     if (registrationYmd.startsWith(thisMonthPrefix)) thisMonthCount += 1;
     if (registrationYmd.startsWith(lastMonthPrefix)) lastMonthCount += 1;
+
+    if (registration.source === "hero") {
+      heroCount += 1;
+    } else if (registration.source === "launch-offer") {
+      launchOfferCount += 1;
+    } else {
+      unknownSourceCount += 1;
+    }
   }
 
   const previousWeekCount = countInRange(
@@ -107,6 +118,9 @@ function buildRegistrationStats(registrations, now = new Date()) {
     todayChangePercent: percentChange(todayCount, yesterdayCount),
     weekChangePercent: percentChange(thisWeekCount, previousWeekCount),
     monthChangePercent: percentChange(thisMonthCount, lastMonthCount),
+    heroCount,
+    launchOfferCount,
+    unknownSourceCount,
   };
 }
 
@@ -115,7 +129,7 @@ async function listRegistrations() {
 
   const { data: registrations, error } = await supabaseClient
     .from("registrations")
-    .select("id, email, created_at")
+    .select("id, email, source, created_at")
     .order("created_at", { ascending: false });
 
   if (error) {
