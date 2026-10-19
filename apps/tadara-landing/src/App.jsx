@@ -8,6 +8,8 @@ import MoreLetter from './sections/more-letter/MoreLetter'
 import WhyStart from './sections/whystart/WhyStart'
 import Questions from './sections/questions/Questions'
 import LaunchOffer from './sections/last-offer/LaunchOffer'
+import CookieBanner from './consent/CookieBanner'
+import SiteFooter from './consent/SiteFooter'
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -46,6 +48,8 @@ function App() {
       <WhyStart />
       <Questions />
       <LaunchOffer />
+      <SiteFooter />
+      <CookieBanner />
 
     </Page>
   )
